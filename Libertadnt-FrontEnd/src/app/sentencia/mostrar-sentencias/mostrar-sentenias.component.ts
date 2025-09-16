@@ -32,7 +32,7 @@ export class MostrarSenteniasComponent implements OnInit {
   ban = false;
   
   
-   uno:Sentencia ={
+   uno ={
      cod_sentencia: 0,
      nombre: '',
      descripcion: '',
@@ -57,7 +57,7 @@ export class MostrarSenteniasComponent implements OnInit {
 
   buscarUnaSentencia(id:any){
     this.service.getOneSentencias(id).subscribe({
-      next: (respuesta)=> {this.uno = respuesta},
+      next: (respuesta)=> {this.service.sentencia = respuesta},
       error: (e) => {console.log(e)}}
     )
 

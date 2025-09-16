@@ -11,7 +11,7 @@ export interface Actividad {
     estado: number,
     cantidad_minima: number,
     edad_minima: number, 
-    cod_sector: Sector,
+    cod_sector: number,
     reclusos: Array<Recluso>,
 
 }
