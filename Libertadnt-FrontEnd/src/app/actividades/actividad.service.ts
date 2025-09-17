@@ -4,8 +4,6 @@ import { Actividad } from '../interfaces/actividad-interface.js';
 import { Ilegal } from '../interfaces/ilegal-interface.js';
 import { environment } from './../../environments/environment';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +21,8 @@ export class ActividadService {
     estado: 0,
     cantidad_minima: 0,
     edad_minima: 0, 
-    cod_sector: 0,
+    cod_sector: [],
+    reclusos: [],
     }
 
   readonly api_url ='https://jsonplaceholder.typicode.com/todos/'

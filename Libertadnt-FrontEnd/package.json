@@ -21,7 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "17.0.1",
     "@popperjs/core": "^2.11.8",
     "@types/jest": "27.4.1",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.8",
     "build-angular:dev-server": "link:@angular-devkit/build-angular:dev-server",
     "cypress": "^14.2.0",
     "jest-preset-angular": "14.5.3",

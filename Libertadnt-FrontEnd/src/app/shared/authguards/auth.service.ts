@@ -15,13 +15,15 @@ export class AuthService {
     try {
       // No hace falta agregar headers si ya tenés interceptor
       await lastValueFrom(this.http.get(this.apiUrl));
+  
       return true; // Token válido
     } catch (error: any) {
-      if (error.status === 401) {
+      if (error.status == 401) {
         this.router.navigate(['/noAutorizado']);
-      } else if (error.status === 403) {
+      } else if (error.status == 403) {
         this.router.navigate(['/expirado']);
       }
+      
       return false;
     }
   }

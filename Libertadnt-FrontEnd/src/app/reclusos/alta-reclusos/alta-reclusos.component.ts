@@ -107,11 +107,11 @@ enviarCondena(){
   console.log(sentencia_enviar)
   this.service.postCondena(sentencia_enviar).subscribe({
     next:(data)=>{
-      if(data.status == 201){
+      if(data){
         console.log( "response:",data)
-        console.log("condena posteada")
+        console.log("condena posteada status == 201")
         this.bandRecluso = 'celda'
-        this.celda= data.celda
+        this.celda= data
       }
     },
     error:(e)=>{

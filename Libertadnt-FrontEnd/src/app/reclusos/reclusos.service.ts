@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Recluso } from '../interfaces/recluso-interface.js';
 import { Data } from '../interfaces/data-interface.js';
 import { Condena } from '../interfaces/condena-interface.js';
+
 import { environment } from './../../environments/environment';
+import { Celda } from '../interfaces/celda-interface.js';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +58,7 @@ export class ReclusosService {
     return this.http.get<Condena | any>(`${environment.API_URL}`+"condenas")
   }
   postCondena(x:any){
-    return this.http.post<Condena|any|Data>(`${environment.API_URL}`+"/condenas",x);
+    return this.http.post<Celda>(`${environment.API_URL}`+"/condenas",x);
   }
   getOneCelda(id:number) {
     return this.http.get<any | JSON>(this.api_celda+`${id}`);
