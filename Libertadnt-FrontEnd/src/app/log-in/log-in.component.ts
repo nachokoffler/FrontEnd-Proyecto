@@ -50,7 +50,6 @@ export class LogInComponent  {
   enviarUsuario(){
     this.service.postAdministrador(this.usuario.value).subscribe({
       next: (response)=> {
-        console.log(response.header)
         if(!response.es_especial){
           this.bandUsuario='encontrado';
           this.bandera='menu'
@@ -58,7 +57,7 @@ export class LogInComponent  {
           sessionStorage.setItem("usuario", "menu");
           this.router.navigate(['usuario/menu'])
         }
-        if(response){
+        else {
           this.bandUsuario ='encontrado'
           this.bandera = "menu-maestro"
           sessionStorage.setItem("token", response.token);

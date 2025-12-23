@@ -37,7 +37,9 @@ export class ReclusosService {
       celda:this.celda
     },
     this.condenas = []
-    this.celda= {}
+    this.celda= {
+
+    }
     this.celdas= []
   }  
 
@@ -58,7 +60,7 @@ export class ReclusosService {
     return this.http.get<Condena | any>(`${environment.API_URL}`+"condenas")
   }
   postCondena(x:any){
-    return this.http.post<Celda>(`${environment.API_URL}`+"/condenas",x);
+    return this.http.post<Celda>(`${environment.API_URL}`+"condenas",x);
   }
   getOneCelda(id:number) {
     return this.http.get<any | JSON>(this.api_celda+`${id}`);

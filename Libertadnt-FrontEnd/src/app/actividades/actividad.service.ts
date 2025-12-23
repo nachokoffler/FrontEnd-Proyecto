@@ -11,7 +11,7 @@ export class ActividadService {
   [x: string]: any;
   ilegales: any=[]
   actividades: any=[]  
-  actividad ={ 
+  actividad:Actividad ={ 
     nombre: '',
     descripcion: '', 
     locacion: '', 
@@ -21,24 +21,26 @@ export class ActividadService {
     estado: 0,
     cantidad_minima: 0,
     edad_minima: 0, 
-    cod_sector: [],
+    cod_sector: 0,
     reclusos: [],
     }
+    ilegal:Ilegal
 
   readonly api_url ='https://jsonplaceholder.typicode.com/todos/'
   readonly ilegal_url = 'https://jsonplaceholder.typicode.com/todos/'
-  constructor(
-    private http: HttpClient) {
-    let ilegal={
-      nombre: '',
-      descripcion: '', 
-      locacion: '', 
-      dia_de_la_semana: '', 
-      hora_inicio: '', 
-      hora_fin: '',
-      estado: '',
-      cantidad_maxima: '',
-      status:'',
+  constructor(private http: HttpClient) {
+    this.ilegal={
+     cod_act_ilegal : 0,
+      nombre: "",
+      descripcion: "", 
+      locacion: "", 
+      dia_de_la_semana: 0, 
+      hora_inicio: 0, 
+      hora_fin: 0,
+      estado: 0,
+      cantidad_maxima: 0,
+      reclusos : [],
+      ilegales: []
 }
 
   }
@@ -48,6 +50,9 @@ export class ActividadService {
   }
   getOneActividad(id:any) {
     return this.http.get<Actividad>(`${environment.API_URL}`+"actividades/"+`${id}`)
+  }
+  RemoveOneActividad(id:any) {
+    return this.http.delete<string|any>(`${environment.API_URL}`+"actividades/"+`${id}`)
   }
   postActividad(uActual:any){
     // const raw = uActual.value;

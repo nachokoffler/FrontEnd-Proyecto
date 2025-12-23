@@ -24,8 +24,12 @@ export class CrearTurnosComponent implements OnInit {
       })
   } //const cod =  Number.parseInt(req.params.cod)
   atras:string|undefined
+  link:any
+
   ngOnInit(): void {
-    console.log("esto esta adando");
+    console.log(this.route.snapshot.params['sector'])
+    this.atras=this.route.snapshot.params['sector']
+    this.link= "/usuario/menu/sector/t/"+`${this.atras}`
   }
     nuevo_turno  : FormGroup;
     cod_guardia: FormControl;

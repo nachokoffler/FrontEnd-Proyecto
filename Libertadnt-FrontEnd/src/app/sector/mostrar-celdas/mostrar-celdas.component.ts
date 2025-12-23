@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SectorService } from '../sector.service.js';
 import { ActivatedRoute,  } from '@angular/router';
 
-
 @Component({
   selector: 'app-mostrar-celdas',
   standalone: true,
@@ -20,9 +19,11 @@ export class MostrarCeldasComponent implements OnInit {
     console.log(this.route.snapshot.params['sector'])
     this.service.getCeldasDSeSector(this.route.snapshot.params['sector']).subscribe({
       next:(data)=>{
-        this.service.celdas=data;
-        console.log("devolucio",data)
+        this.service.celda.celdas=data.celdas;
+        console.log("devolucion ",data)
       },
       error:(e)=>{console.log(e)}})
   }
 }
+
+

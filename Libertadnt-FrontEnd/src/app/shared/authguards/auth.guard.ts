@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    const token = sessionStorage.getItem('token'); // Or get it from a service
+    const token = sessionStorage.getItem('token')
 
     if (!token) {
       this.router.navigate(['/login']);
@@ -20,8 +20,10 @@ export class AuthGuard implements CanActivate {
     }
 
     const isValid = await this.authService.verifyToken(token)
-    console.log(isValid)
+    console.log(`is valid: ${isValid}`)
     return isValid;
   }
 }
+
+
 

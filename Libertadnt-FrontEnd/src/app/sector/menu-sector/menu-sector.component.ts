@@ -15,8 +15,10 @@ export class MenuSectorComponent implements OnInit{
   ngOnInit(): void {
     this.service.getSectores().subscribe({
       next:(data)=>{
-        console.log("sectores obtenidos")
-        this.service.sectores=data},
+        console.log("sectores obtenidos",data)
+        this.service.sector.sectores=data.sectores
+        console.log("sectores obtenidos",this.service.sectores)
+      },
       error:(e)=>{console.log(e)}})
   }
   verCeldas(x:any){

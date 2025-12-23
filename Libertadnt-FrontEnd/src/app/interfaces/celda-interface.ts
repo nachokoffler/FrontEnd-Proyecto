@@ -5,5 +5,6 @@ export interface Celda {
         cod_sector:number,
         descripcion : string,
         capacidad: number,
-        reclusos: Recluso[] 
+        reclusos: Recluso[],
+        celdas: Celda[] 
 }

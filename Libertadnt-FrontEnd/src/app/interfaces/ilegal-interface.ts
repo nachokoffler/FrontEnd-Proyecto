@@ -10,5 +10,6 @@ export interface Ilegal {
       hora_fin: number,
       estado: number,
       cantidad_maxima: number,
-      reclusos : Recluso[]
+      reclusos : Recluso[],
+      ilegales: Ilegal[]
 }

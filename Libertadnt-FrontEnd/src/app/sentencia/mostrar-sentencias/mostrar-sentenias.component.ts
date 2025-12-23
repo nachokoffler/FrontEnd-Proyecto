@@ -55,8 +55,12 @@ export class MostrarSenteniasComponent implements OnInit {
     
   }
 
-  
-
+  buscarUnaSentencia(id:any){
+    this.service.getOneSentencias(id).subscribe({
+      next: (respuesta)=> {this.service.sentencia = respuesta},
+      error: (e) => {console.log(e)}}
+    )
+  }
   
 
 }

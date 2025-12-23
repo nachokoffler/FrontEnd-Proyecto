@@ -1,56 +1,33 @@
 
 <body class="formulario">
-  <div class="w-50 p-3">
+  <div class="w-25 p-3">
     <a class="icon-link icon-link-hover" href="menu/actividad">
       ATRAS
       <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
     </a>
     <p></p>
-
+    <h2 class="text-center mb-4">Eliminar Actividad</h2>
     <form [formGroup]="actividad" (submit)="validarActividad()">
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Codigo de Actividad:</span>
         <input  type="text" formControlName="cod_actividad" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
      
-      <button  (click)="validarActividad()" type="button" class="btn btn-primary">enviar</button>
+      <button  (click)="validarActividad()" type="button" class="btn btn-primary">Buscar</button>
     </form>
     <p></p>
-    <p></p>
-    @if (bandActividad) {
+    @if (bandActividad == true) {
     <div>
-      <h2>Modificación</h2>
-      <div class="alert alert-dark" role="alert">
-        <h5>ingese únicamente el valor que desea cambiar</h5>
+        <div class="alert alert-success" role="alert">
+          <h5>{{mensaje}}</h5>
+        </div>
+    </div>
+    }
+    @if (bandActividad == false) {
+    <div>
+      <div class="alert alert-danger" role="alert">
+        <h5>{{mensaje}}</h5>
       </div>
-      <form [formGroup]="actividad" (submit)="cambiarActiviada()">
-        <fieldset>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Descipcion </span>
-            <input [placeholder]="placeholderDescripcion" type="text" formControlName="descripcion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Locacion </span>
-            <input [placeholder]="placeholderLocacion" type="text" formControlName="locacion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">nombre </span>
-            <input [placeholder]="placeholderNombre" type="text" formControlName="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">estado </span>
-            <input [placeholder]="placeholderEstado" type="text" formControlName="estado" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          </div>
-        </fieldset>
-
-        <button  type="button" class="btn btn-primary">enviar</button>
-      </form>
     </div>
     }
 

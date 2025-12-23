@@ -1,39 +1,52 @@
 <body class="listado">
-    <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/:menu">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-          </a>
-          <p></p>
-          <h2>Listado de Administrtadores</h2>
-          <div>
-            @if (bandera=== true) {
-            @for (item of service.usuarios.data; track $index) {
-                <ul class="list-group list-group-horizontal-sm">
-                    <li class="list-group-item">
-                        <h5>
-                            codigo del administrador: {{item.cod_administrador}}<br>
-                            nombre: {{item.nombre}}<br>
-                            apellido: {{item.apellido}}<br>
-                        </h5>
-                    </li>
-                  </ul>
-                <p></p>
-            }} 
-            @if (bandera=== false) {
-                <div class="alert alert-primary" role="alert">
-                    <p>no hay administrtadores para mostrar </p>
-                </div>
-            }
-            @if (bandera=== undefined ) {
-                <div class="alert alert-warning" role="alert">
-                    <h4>problema de servidor </h4>
-                    
-                </div>
-            }
+    <div class="container-fluid">
+        <!-- Contenido centrado -->
+        <div class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+            
+            <!-- Breadcrumb centrado arriba del título -->
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="usuario/:menu">Menu</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Administradores</li>
+                </ol>
+            </nav>
+
+            <!-- Contenido principal -->
+            <div class="w-25 p-3 text-center">
+                <h2 class="mb-4">Listado de Administradores</h2>
+                
+                @if (bandera === true) {
+                    @for (item of service.usuarios.data; track $index) {
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="list-group w-100">
+                                <div class="list-group-item">
+                                    <h5 class="mb-0">
+                                        Codigo del administrador: {{item.cod_administrador}}<br>
+                                        Nombre: {{item.nombre}}<br>
+                                        Apellido: {{item.apellido}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                } 
+                @if (bandera === false) {
+                    <div class="alert alert-primary" role="alert">
+                        <p>No hay administradores para mostrar</p>
+                    </div>
+                }
+                @if (bandera === undefined) {
+                    <div class="alert alert-warning" role="alert">
+                        <h4>Problema de servidor</h4>
+                    </div>
+                }
+            </div>
         </div>
-    </div>    
+    </div>
 </body>
+
+
+
 
 
 

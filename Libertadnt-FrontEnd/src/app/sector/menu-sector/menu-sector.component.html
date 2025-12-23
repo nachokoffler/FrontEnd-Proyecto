@@ -1,26 +1,32 @@
 
 <body class="menu">
-    <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/menu">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-          </a>
-          <p></p>
-          <h2>Sectores:</h2>
+    <div class="w-50 p-3 mx-auto d-flex flex-column align-items-center">
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sectores</li>
+          </ol>
+        </nav>   
+        <p></p>
+        <h2 class="text-center">Sectores</h2>
+        <p></p>
           
         <div>
-            @for (sector of service.sectores.data; track $index) {
+            @for (sector of service.sector.sectores; track $index) {
                 <ul class="list-group list-group-horizontal-sm">
                     <li class="list-group-item">
-                         nombre: {{sector.nombre}}<br>
-                        descripcion: {{sector.descripcion}}<br>
-                        codigo de sector: {{sector.cod_sector}}<br>
+                        Nombre: {{sector.nombre}}<br>
+                        Descripcion: {{sector.descripcion}}<br>
+                        Codigo de sector: {{sector.cod_sector}}<br>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                            <button [routerLink]="direccion" (click)="verCeldas(sector.cod_sector)" type="button" class="btn btn-outline-primary">celdas</button>
-                            <button [routerLink]="direccion" (click)="verTurnos(sector.cod_sector)" type="button" class="btn btn-outline-primary">turnos</button>
+                            <button [routerLink]="direccion" (click)="verCeldas(sector.cod_sector)" type="button" class="btn btn-outline-primary">Celdas</button>
+                            <button [routerLink]="direccion" (click)="verTurnos(sector.cod_sector)" type="button" class="btn btn-outline-primary">Turnos</button>
                         </div> 
                     </li>
                 </ul>
+                <p></p>
+                <p></p>
             }
         </div>
     </div>

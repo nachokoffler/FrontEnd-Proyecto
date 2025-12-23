@@ -15,7 +15,7 @@ export class MostrarIlegalComponent implements OnInit{
   ngOnInit(): void {
     this.service.getIlegales().subscribe({
       next:(data)=>{
-        this.service.ilegales = data
+        this.service.ilegal.ilegales = data.ilegales
         this.banana=true
       },
       error:(e)=>{console.log(e)}})

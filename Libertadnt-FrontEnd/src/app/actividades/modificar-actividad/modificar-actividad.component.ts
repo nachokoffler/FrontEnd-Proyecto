@@ -33,27 +33,21 @@ export class ModificarActividadComponent {
   cod_actividad: FormControl;
   estado: FormControl
   bandActividad:boolean | undefined
-  placeholderNombre:string|undefined
-  placeholderLocacion:string|undefined
-  placeholderDescripcion:string|undefined
-  placeholderEstado:string|undefined
+  mensaje: string | undefined
   validarActividad(){
-    this.service.getOneActividad(this.cod_actividad.value).subscribe({
+    this.service.RemoveOneActividad(this.cod_actividad.value).subscribe({
       next:(data)=>{
-        if(data ){
-          this.service.actividad=data
-          console.log("actividad existente status = 201",data);
+        if(data){
+          console.log("actividad existente status = 200",data);
           this.bandActividad=true;
-          this.placeholderNombre= data.nombre
-          this.placeholderDescripcion = data.descripcion
-          this.placeholderLocacion= data.locacion
-          this.placeholderEstado = String(data.estado)
+          this.mensaje= data.message
         }
       },
       error:(e)=>{
         if(e.status == 404){
           console.log("actividad no encontrada ",e)
           this.bandActividad=false
+          this.mensaje= e.error.message
         }
       }})
   }

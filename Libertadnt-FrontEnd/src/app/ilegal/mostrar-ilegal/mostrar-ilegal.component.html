@@ -1,30 +1,98 @@
+<style>
+    .breadcrumb-rojo {
+        background-color: #dc3545 !important;
+        color: white !important;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+    }
+    .breadcrumb-rojo .breadcrumb-item a {
+        color: white !important;
+        text-decoration: none;
+    }
+    .breadcrumb-rojo .breadcrumb-item.active {
+        color: white !important;
+    }
+</style>
+
 <body class="listadoi">
     <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/menu-maestro/menu">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-        </a>
+        <nav aria-label="breadcrumb" class="w-25 p-3">
+            <ol class="breadcrumb breadcrumb-rojo"> <!-- Clase personalizada -->
+                <li class="breadcrumb-item"><a href="usuario/menu-maestro">Menu Principal</a></li>
+                <li class="breadcrumb-item"><a href="usuario/menu-maestro/menu">Menu Actividades</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Mostrar Actividades</li>
+            </ol>
+        </nav>
+
+        <!-- El resto del contenido se mantiene igual -->
         <h2 class="titulo">Actividades Ilegales Activas </h2>
         @if (banana) {
             <div>
-                @for (item of service.ilegales; track $index) {
+                @for (item of service.ilegal.ilegales; track $index) {
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item">
                             <h5>
-                                nombre: {{item.nombre}}<br>
-                                locacion: {{item.locacion}} <br>
-                                descripcion: {{item.descripcion}} <br>
-                                hora de inicio: {{item.hora_inicio}} <br>
-                                hora de fin: {{item.hora_fin}} <br>
-                                cantidad maxima: {{item.cantidad_maxima}} <br>
-                                locacion: {{item.locacion}} <br>
-                                @if (item.dia_de_la_semana == 1) {dia de la semana: Lunes}
-                                @if (item.dia_de_la_semana == 2) {dia de la semana: Martes}
-                                @if (item.dia_de_la_semana == 3) {dia de la semana: Miercoles}
-                                @if (item.dia_de_la_semana == 4) {dia de la semana: Jueves}
-                                @if (item.dia_de_la_semana == 5) {dia de la semana: Viernes}
-                                @if (item.dia_de_la_semana == 6) {dia de la semana: Sabado}
-                                @if (item.dia_de_la_semana == 7) {dia de la semana: Domingo}
+                                Nombre: {{item.nombre}}<br>
+                                Locacion: {{item.locacion}} <br>
+                                Descripcion: {{item.descripcion}} <br>
+                                Hora de Inicio: {{item.hora_inicio}} <br>
+                                Hora de Fin: {{item.hora_fin}} <br>
+                                Cantidad maxima: {{item.cantidad_maxima}} <br>
+                                Locacion: {{item.locacion}} <br>
+                                @if (item.dia_de_la_semana == 1) {Dia de la semana: Lunes}
+                                @if (item.dia_de_la_semana == 2) {Dia de la semana: Martes}
+                                @if (item.dia_de_la_semana == 3) {Dia de la semana: Miercoles}
+                                @if (item.dia_de_la_semana == 4) {Dia de la semana: Jueves}
+                                @if (item.dia_de_la_semana == 5) {Dia de la semana: Viernes}
+                                @if (item.dia_de_la_semana == 6) {Dia de la semana: Sabado}
+                                @if (item.dia_de_la_semana == 7) {Dia de la semana: Domingo}
+                            </h5>
+                        </li>
+                    </ul>
+                    <p></p>
+                }
+            </div>
+        }@else {
+            <p></p>
+            <div class="alert alert-primary" role="alert">
+                <h4> NO hay actividades disponibles </h4>
+            </div>
+        }
+    </div>
+</body>
+
+
+
+<body class="listadoi">
+    <div class="w-50 p-3">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="usuario/menu-maestro/menu">Menu</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mostrar Actividades</li>
+        </ol>
+        </nav>
+
+        <h2 class="titulo">Actividades Ilegales Activas </h2>
+        @if (banana) {
+            <div>
+                @for (item of service.ilegal.ilegales; track $index) {
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">
+                            <h5>
+                                Nombre: {{item.nombre}}<br>
+                                Locacion: {{item.locacion}} <br>
+                                Descripcion: {{item.descripcion}} <br>
+                                Hora de Inicio: {{item.hora_inicio}} <br>
+                                Hora de Fin: {{item.hora_fin}} <br>
+                                Cantidad maxima: {{item.cantidad_maxima}} <br>
+                                Locacion: {{item.locacion}} <br>
+                                @if (item.dia_de_la_semana == 1) {Dia de la semana: Lunes}
+                                @if (item.dia_de_la_semana == 2) {Dia de la semana: Martes}
+                                @if (item.dia_de_la_semana == 3) {Dia de la semana: Miercoles}
+                                @if (item.dia_de_la_semana == 4) {Dia de la semana: Jueves}
+                                @if (item.dia_de_la_semana == 5) {Dia de la semana: Viernes}
+                                @if (item.dia_de_la_semana == 6) {Dia de la semana: Sabado}
+                                @if (item.dia_de_la_semana == 7) {Dia de la semana: Domingo}
                             </h5>
                         </li>
                     </ul>

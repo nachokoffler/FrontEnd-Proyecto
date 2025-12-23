@@ -1,9 +1,16 @@
 <body class="formulario">
     <div class="w-50 p-3">
-            <a class="icon-link icon-link-hover" href="usuario/menu/sector/t/:sector">
-                ATRAS
-                <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-            </a>
+
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
+                <li class="breadcrumb-item"><a href="usuario/menu/sector">Sector</a></li>
+                <li class="breadcrumb-item"><a [href]="link">Turno</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear</li>
+            </ol>
+            </nav>
+
+            
             <p></p>
             <h2>Crear turno: </h2>
             <p></p>
@@ -12,7 +19,7 @@
                     <div class="mb-3 row">
                         <div class="col-sm-6">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">codigo de guardia</span>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Codigo de guardia</span>
                                 <input  placeholder="Ingrese codigo" type="number" formControlName="cod_guardia" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
@@ -22,36 +29,36 @@
                 <fieldset>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" formControlName="turno" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M">
-                        <label class="form-check-label" for="inlineRadio1">mañana</label>
+                        <label class="form-check-label" for="inlineRadio1">Mañana</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" formControlName="turno" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="T">
-                        <label class="form-check-label" for="inlineRadio1">tarde</label>
+                        <label class="form-check-label" for="inlineRadio1">Tarde</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" formControlName="turno" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="N">
-                        <label class="form-check-label" for="inlineRadio1">noche</label>
+                        <label class="form-check-label" for="inlineRadio1">Noche</label>
                     </div>    
                 </fieldset>
                 <p></p>
-                <button [disabled]="nuevo_turno.invalid" type="button" class="btn btn-success"  (click)="crearTurno()" >crear</button>
+                <button [disabled]="nuevo_turno.invalid" type="button" class="btn btn-success"  (click)="crearTurno()" >Crear</button>
             </form>
             @if(bandera== 'exito'){
                 <p></p>
-                <div class="alert alert-success" role="alert">
-                    <p> el turno se creo con exito </p>
+                <div class="alert alert-success w-25 p-3" role="alert" >
+                    <p> El turno se creo con exito </p>
                 </div>
             }
             @if(bandera== 'ocupado'){
                 <p></p>
-                <div class="alert alert-warning" role="alert">
-                    <p> el guardia no esta disponible en la franja horaria elegida</p>
+                <div class="alert alert-warning w-25 p-3 " role="alert">
+                    <p> El guardia no esta disponible en la franja horaria elegida</p>
                 </div>
             }
             @if(bandera== 'no encontrado'){
                 <p></p>
-                <div class="alert alert-danger" role="alert">
-                    <p> no se pudo encontrar ningun guardia activo con ese codigo  </p>
+                <div class="alert alert-danger w-25 p-3" role="alert">
+                    <p> No se pudo encontrar ningun guardia activo con ese codigo  </p>
                 </div>
             }
     </div>

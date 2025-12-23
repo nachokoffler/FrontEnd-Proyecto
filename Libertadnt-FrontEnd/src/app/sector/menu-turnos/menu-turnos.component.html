@@ -1,59 +1,61 @@
 <body class="menu">
-    <div class="w-50 p-3">
-         <a class="icon-link icon-link-hover" href="usuario/menu/sector">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-        </a>
-        <p></p>
+  <div class="w-25 p-3 mx-auto">
 
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" >
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
+        <li class="breadcrumb-item"><a href="usuario/menu/sector">Sector</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Turnos</li>
+      </ol>
+    </nav>
 
+    <!-- Título -->
+    <h2 class="text-center">Turnos:</h2>
+    <div class="row mb-4">
+      <div class="col">
+        <h3 class="text-center">Turnos del sector {{sector}}</h3>
+      </div>
+    </div>
 
-                <div class="container py-4">
-        
-        <div class="row mb-4">
-            <div class="col">
-            <h2 class="text-center">Turnos del sector {{sector}}</h2>
-            </div>
-        </div>
+    <!-- Contenedor de botón y turnos -->
+    <div class="d-flex justify-content-center align-items-start gap-3">
 
-        
-        <div class="row">
-            
-            <div class="col-md-3 mb-3">
-                <button class="btn btn-primary w-100" [routerLink]="link">
-                    Crear turnos
+      <!-- Botón a la izquierda -->
+      <div>
+        <button class="btn btn-primary" [routerLink]="link">Crear</button>
+      </div>
+
+      <!-- Lista de turnos a la derecha -->
+      <div class="flex-grow-1">
+        @if (bandera) {
+          @for (turno of service.turno.turnos; track $index) {
+            <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <p>
+                  Apellido del guardia: {{turno.cod_guardia.apellido}} <br>
+                  Nombre del guardia: {{turno.cod_guardia.nombre}} <br>
+                  Código del guardia: {{turno.cod_guardia.cod_guardia}} <br>
+                  @if(turno.turno == "M"){ Franja horaria: mañana }
+                  @else if(turno.turno == "T"){ Franja horaria: tarde }
+                  @else if(turno.turno == "N"){ Franja horaria: noche }
+                </p>
+                <button type="button" class="btn btn-danger btn-sm"
+                        (click)="finalizarTurno(turno.cod_guardia, turno.turno)">
+                  Finalizar
                 </button>
-            </div>
-
-           
-            <div class="col-md-9">
-                    @if (bandera) {
-                @for (turno of service.celdas.data; track $index) {
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p>apellido de guardia: {{turno.cod_guardia.apellido}}<br>
-                            nombre de guardia: {{turno.cod_guardia.nombre}}<br>
-                            codigo de guardia: {{turno.cod_guardia.cod_guardia}}<br>
-                            @if(turno.turno == "M"){franja horaria:  mañana}
-                            @else if(turno.turno == "T"){franja horaria:  tarde}
-                            @else if(turno.turno == "N"){franja horaria:  noche}
-                        <p></p>        
-                        <button type="button" class="btn btn-danger" (click)="finalizarTurno(turno.cod_guardia,turno.turno)">finalizar turno</button>
-                        </li>
-                        <p></p>
-                    </ul>
-                }
-            }@else{
-                <div class="alert alert-info" role="alert">
-                    <h3>No hay turnos disponibles</h3>
-                </div>
-            }
-
-            </div>
-        </div>
-        </div>
+              </li>
+            </ul>
+          }
+        } @else {
+          <div class="alert alert-info" role="alert">
+            <h3>No hay turnos disponibles</h3>
+          </div>
+        }
+      </div>
 
     </div>
+  </div>
 </body>
 
 

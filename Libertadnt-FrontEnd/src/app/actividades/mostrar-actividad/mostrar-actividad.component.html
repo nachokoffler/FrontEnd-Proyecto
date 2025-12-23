@@ -7,22 +7,39 @@
       <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
     </a>
     <p></p>
-    <h2>Mostrar actividades</h2>
+    <h2 class="text-center mb-4">Mostrar actividades</h2>
     <p></p>
-  
-    @for (item of service.actividades; track $index) {
-      <ul class="list-group">
-        <li class="list-group-item disabled" aria-disabled="true">
-          <p>
-            descripcion: {{item.title}} <br>
-            locacion: {{item}}<br>
-            dia de la semana {{item}}<br>
-            hora: {{item.id}}<br>
-            codigo: {{item.userId}}<br>
-            estado: {{item.completed}}<br></p>
-        </li>
-      </ul>
+    @if(bandera){
+
+      @for (item of service.actividades; track $index) {
+       <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">
+                            <h5>
+                                nombre: {{item.nombre}}<br>
+                                locacion: {{item.locacion}} <br>
+                                descripcion: {{item.descripcion}} <br>
+                                hora de inicio: {{item.hora_inicio}} <br>
+                                hora de fin: {{item.hora_fin}} <br>
+                                cantidad maxima: {{item.cantidad_maxima}} <br>
+                                locacion: {{item.locacion}} <br>
+                                @if (item.dia_de_la_semana == 1) {dia de la semana: Lunes}
+                                @if (item.dia_de_la_semana == 2) {dia de la semana: Martes}
+                                @if (item.dia_de_la_semana == 3) {dia de la semana: Miercoles}
+                                @if (item.dia_de_la_semana == 4) {dia de la semana: Jueves}
+                                @if (item.dia_de_la_semana == 5) {dia de la semana: Viernes}
+                                @if (item.dia_de_la_semana == 6) {dia de la semana: Sabado}
+                                @if (item.dia_de_la_semana == 7) {dia de la semana: Domingo}
+                            </h5>
+                        </li>
+                    </ul>
     }
+
+
+    }@else{
+      <div class="alert alert-danger" role="alert">
+        <h6>No hay actividades</h6>
+      </div>
+    }  
   </div>
 
  

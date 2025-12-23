@@ -1,26 +1,32 @@
-
 <body class="listado">
-    <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/menu/sector">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-          </a>
-          <p></p>
+    <div class="container d-flex justify-content-center">
+        <div class="w-25"> <!-- Cambiado de w-25 a w-50 para más espacio controlado -->
 
-          <h2>celdas del sector</h2>
-        <p></p>
-        @for (celda of service.celdas.data; track $index) {
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p>
-                        capacidad: {{celda.capacidad}}
-                        <br>codigo de celda: {{celda.cod_celda}}
-                        <br>descripcion: {{celda.descripcion}}
-                    </p>
-                </li>
-              </ul>
-            <p></p>
-        }
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
+                    <li class="breadcrumb-item"><a href="usuario/menu/sector">Sector</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Celdas</li>
+                </ol>
+            </nav>
 
+            <h2 class="text-center">Celdas del sector</h2>
+            
+            @for (celda of service.celda.celdas; track $index) {
+                <div class="d-flex justify-content-center mb-3"> <!-- Contenedor para centrar cada item -->
+                    <div class="list-group w-75"> <!-- Ancho del 75% dentro del contenedor -->
+                        <div class="list-group-item p-2"> <!-- Reducido padding -->
+                            <p class="text-center mb-1"> <!-- Reducido margen inferior -->
+                                Codigo de celda: {{celda.cod_celda}}<br>
+                                Descripción: {{celda.descripcion}}<br>
+                                Capacidad: {{celda.capacidad}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
     </div>
 </body>
+

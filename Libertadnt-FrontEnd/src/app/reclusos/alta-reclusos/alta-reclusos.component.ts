@@ -85,7 +85,7 @@ validarRecluso(){
       }
     },
     error: (e)=>{
-      if(e.status == 203){
+      if(e.status == 409){
         console.log("recluso tiene condena activa")
         this.bandRecluso='activa'
       }
@@ -102,16 +102,16 @@ validarRecluso(){
 enviarCondena(){
   let sentencia_enviar={
     cod_recluso: this.cod_rec,
-    cod_sentencia: this.respuesta
+    cod_sentencias: this.respuesta
   }
   console.log(sentencia_enviar)
   this.service.postCondena(sentencia_enviar).subscribe({
     next:(data)=>{
       if(data){
-        console.log( "response:",data)
+        console.log( "response: ",data)
         console.log("condena posteada status == 201")
         this.bandRecluso = 'celda'
-        this.celda= data
+        this.service.celda = data
       }
     },
     error:(e)=>{

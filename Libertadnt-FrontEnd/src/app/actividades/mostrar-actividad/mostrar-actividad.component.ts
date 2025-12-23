@@ -16,16 +16,16 @@ export class MostrarActividadComponent implements OnInit{
       next:(data)=>{
         if(data){
           this.service.actividades=data
-          console.log("actividades encontradas" , data)
+          console.log("actividades encontradas", data)
+          this.bandera = true
         }
       },
       error:(e)=>{
         if(e.status === 404){
-          this.bandera = true
-          console.log("actividades no encontradas ",e)
+          this.bandera = false
+          console.log("actividades no encontradas", e)
         }
       }
     })
   }
-  
 }
