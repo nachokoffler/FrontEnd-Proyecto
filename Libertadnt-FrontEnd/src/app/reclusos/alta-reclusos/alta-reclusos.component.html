@@ -23,30 +23,32 @@
       </div>
 
       <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Dni</span>
+        <span class="input-group-text" id="inputGroup-sizing-default">DNI</span>
         <input type="number" formControlName="dni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
 
       <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">fecha de nacimiento</span>
+        <span class="input-group-text" id="inputGroup-sizing-default">Fecha de nacimiento</span>
         <input type="date" formControlName="fecha_nac" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
 
-      <button (click)="validarRecluso()" [disabled]="recluso.invalid" type="button" class="btn btn-primary">guardar</button>
+      <button (click)="validarRecluso()" [disabled]="recluso.invalid" type="button" class="btn btn-primary">Registrar</button>
       <p></p>
     </form>
   
   
     @if (bandRecluso == 'exito') {
       <p></p>
-      <h2>Sentencias :</h2>
+      <p></p>
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <h2>Seleccione Sentencias</h2>
       <p></p>
       @for (item of sSentencia.sentencias.data; track $index) {
         <ul class="list-group">
           <li class="list-group-item disabled" aria-disabled="true">
-            <p>codigo: {{item.cod_sentencia}}<br>
-              nombre: {{item.nombre}}<br>
-              descripcion: {{item.descripcion}}<br>
+            <p>Codigo: {{item.cod_sentencia}}<br>
+              Nombre: {{item.nombre}}<br>
+              Descripcion: {{item.descripcion}}<br>
             </p>
           </li>
             <div class="form-check form-switch form-check-reverse">
@@ -58,8 +60,11 @@
         <p></p>
       }
       <p></p>
-      <button (click)="enviarCondena()" type="button" class="btn btn-primary">ENVIAR</button>
+      <button (click)="enviarCondena()" type="button" class="btn btn-primary">Registrar Condena</button>
       <p></p>
+
+      </div>
+      
 
     }
     @if (bandRecluso == 'activa') {
