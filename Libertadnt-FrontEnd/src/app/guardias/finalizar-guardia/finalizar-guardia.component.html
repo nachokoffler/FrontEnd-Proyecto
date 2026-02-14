@@ -10,27 +10,27 @@
         <form [formGroup]="guardia" (submit)="validarGuarida()">
             <p></p>
             <div class="input-group mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-default">codigo de guardia</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">Codigo de guardia</span>
               <input type="text" formControlName="cod_guardia" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
       
-            <button (click)="finalizarContrato()" type="button" class="btn btn-primary">Enviar</button>
+            <button (click)="finalizarContrato()" type="button" class="btn btn-primary">Finalizar contrato</button>
             <!--<button [disabled]="guardia.invalid" type="button" class="btn btn-primary">Enviar</button> -->
             <p></p>
         </form>
         @if (fin==="exito") {
             <div class="alert alert-success" role="alert">
-                <p>contrato finalizado</p>
+                <p>Contrato finalizado</p>
             </div>
         }
         @if (fin==="no encontrado") {
             <div class="alert alert-danger" role="alert">
-                <p>GUARDIA NO ENCONTRADO</p>
+                <p>Guardia no encontrado</p>
             </div>
         }
         @if (fin==="finalizado") {
             <div class="alert alert-warning" role="alert">
-                <p>contrato ya fue posteriormente finalizado</p>
+                <p>Contrato ya fue posteriormente finalizado</p>
             </div>
         }
         

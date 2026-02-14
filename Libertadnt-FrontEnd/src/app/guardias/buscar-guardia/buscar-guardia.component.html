@@ -8,25 +8,25 @@
     <h2 class="text-center mb-4">Buscar Guardia</h2>
     <form [formGroup]="guardia">
       <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Dni</span>
+        <span class="input-group-text" id="inputGroup-sizing-default">DNI</span>
         <input type="text" formControlName="dni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
 
-      <button (click)="buscarGuardia()" type="button" class="btn btn-primary">Enviar</button>
+      <button (click)="buscarGuardia()" type="button" class="btn btn-primary">Buscar</button>
       <p></p>
     </form>
     @if (bandera === true) {
       <div class="alert alert-danger" role="alert">
-        <p>el guardia ingresado no existe </p>
+        <p>El guardia ingresado no existe</p>
       </div>
     }
     @else if(bandera === false){
       <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-        <h5>codigo del guardia: {{service.guardia.data.cod_guardia}}<br>
-          nombre: {{service.guardia.data.nombre}}<br>
-          apellido: {{service.guardia.data.apellido}}<br>
-          dni: {{service.guardia.data.dni}}<br>
-          fecha inicio de Contrato: {{fecha.getDate()}} / {{fecha.getMonth() + 1}} / {{fecha.getFullYear()}}
+        <h5>Codigo del guardia: {{service.guardia.data.cod_guardia}}<br>
+          Nombre: {{service.guardia.data.nombre}}<br>
+          Apellido: {{service.guardia.data.apellido}}<br>
+          Dni: {{service.guardia.data.dni}}<br>
+          Fecha inicio de Contrato: {{fecha.getDate()}} / {{fecha.getMonth() + 1}} / {{fecha.getFullYear()}}
             <br></h5>
       </div>
     }  
