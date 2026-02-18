@@ -1,0 +1,5 @@
+.listadoi {
+  background-color: #000; /* negro */
+  color: #fff;            /* texto blanco */
+  min-height: 100vh;      /* ocupa toda la pantalla */
+}

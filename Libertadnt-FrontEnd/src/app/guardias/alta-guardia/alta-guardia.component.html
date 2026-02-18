@@ -21,7 +21,7 @@
             </div>
       
             <div class="input-group mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-default">Dni</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">DNI</span>
               <input type="number" formControlName="dni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
 
@@ -29,14 +29,9 @@
             <!-- <button [disabled]="guardia.invalid" type="button" class="btn btn-primary">Enviar</button> -->
             <p></p>
         </form>
-        @if(bandera === 'creado'){
+        @if(bandera === 'contratado'){
             <div class="alert alert-success" role="alert">
-                <h5>GUARDIA GUARDADO</h5>
-            </div>
-        }
-        @if(bandera === 'existente'){
-            <div class="alert alert-primary" role="alert">
-                <h5>Guarida Encontrado</h5>
+                <h5>El guardia fue contratado exitosamente. <br> Su codigo es {{service.guardia.cod_guardia}}</h5>
             </div>
         }
         @if(bandera === 'activo'){

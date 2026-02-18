@@ -1,164 +1,132 @@
+<!-- crear-actividad.component.html -->
+<body class="bg-black text-white">
+  <div class="d-flex justify-content-center align-items-start min-vh-100">
+    <div class="w-25 w-md-50 w-lg-25 p-3">
+      <!-- Enlace de retroceso -->
+      <a class="icon-link icon-link-hover text-white" href="menu/actividad">
+        ATRAS
+        <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+      </a>
+      <p></p>
 
-<body class="formularioi">
-    <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/menu-maestro/menu">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-        </a>
-          
-        <h2 class="tituloi">Crear actividad ilegal</h2>
+      <!-- Título en rojo -->
+      <h2 class="text-center mb-4 text-danger">Crear actividad ilegal</h2>
+
+      <form [formGroup]="ilegal" (submit)="validarActividad()">
+        <!-- Nombre -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-white border-secondary">Nombre</span>
+          <input type="text" formControlName="nombre" class="form-control bg-dark text-white border-secondary">
+        </div>
+
+        <!-- Descripción -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-white border-secondary">Descripción</span>
+          <input type="text" formControlName="descripcion" class="form-control bg-dark text-white border-secondary">
+        </div>
+
+        <!-- Locación -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-white border-secondary">Locación de ocurrencia</span>
+          <input type="text" formControlName="locacion" class="form-control bg-dark text-white border-secondary">
+        </div>
+
+        <!-- Hora inicio (time) -->
+        
+        <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Hora de inicio</span>
+        <input type="number" placeholder="Ingresar numero de 1 a 24 "  step="3600"  formControlName="hora_inicio" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!-- Hora fin (time) -->
+      
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Hora de fin</span>
+            <input type="number" placeholder="Ingresar numero de 1 a 24 " step="3600" formControlName="hora_fin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!-- Botón para colapsar selector de día -->
+        <p class="d-inline-flex gap-1">
+          <a class="btn btn-outline-danger" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+            Elegir día
+          </a>
+        </p>
+
+        <!-- Selector de día (radios) -->
+        <div class="row">
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="card card-body bg-dark border-secondary">
+                <!-- Radios con id únicos -->
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="1" id="diaLunes">
+                  <label class="form-check-label text-white" for="diaLunes">Lunes</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="2" id="diaMartes">
+                  <label class="form-check-label text-white" for="diaMartes">Martes</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="3" id="diaMiercoles">
+                  <label class="form-check-label text-white" for="diaMiercoles">Miércoles</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="4" id="diaJueves">
+                  <label class="form-check-label text-white" for="diaJueves">Jueves</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="5" id="diaViernes">
+                  <label class="form-check-label text-white" for="diaViernes">Viernes</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="6" id="diaSabado">
+                  <label class="form-check-label text-white" for="diaSabado">Sábado</label>
+                </div>
+                <div class="form-check">
+                  <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value="7" id="diaDomingo">
+                  <label class="form-check-label text-white" for="diaDomingo">Domingo</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <p></p>
-        <form [formGroup]="ilegal" (submit)="validarActividad()">
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-                    <input type="text" formControlName="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Descripcion</span>
-                    <input type="text" formControlName="descripcion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>     
-            </fieldset>
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Locacion de ocurrencia</span>
-                    <input type="text" formControlName="locacion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>      
-            </fieldset>
-            <fieldset>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=1>
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">Lunes</label> 
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">Martes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">miercoles</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="4">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">jueves</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="5">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">viernes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="6">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">sabado</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input  formControlName="dia_de_la_semana" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="7">
-                    <label class="form-check-label" for="inlineRadio1" class="checkbox">domingo</label>
-                </div>     
-            </fieldset>
-            <p></p>
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">cantidad maxima</span>
-                    <input type="number" formControlName="cantidad_maxima" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>     
-            </fieldset>
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Hora de inicio</span>
-                    <input type="number" formControlName="hora_inicio" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>     
-            </fieldset>
-            <fieldset>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Hora de fin</span>
-                    <input type="number" formControlName="hora_fin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                </div>     
-            </fieldset>
-----------------------------------------------------------------------------------------------------
-            <div class="card card-body">
 
-              <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value= 1 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Lunes
-            </label>
-          </div>
+        <!-- Cupo máximo -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-white border-secondary">Cupo máximo</span>
+          <input type="number" formControlName="cantidad_maxima" class="form-control bg-dark text-white border-secondary">
+        </div>
 
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value= 2 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Martes
-            </label>
-          </div>
+        <p></p>
 
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value= 3 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Miercoles
-            </label>
-          </div>
+        <!-- Botón de crear -->
+        <button  (click)="validarActividad()" type="button" class="btn btn-danger">Crear</button>
+        <p></p>
+      </form>
 
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value=4 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Jueves
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value=5 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Viernes
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value=6 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Sabado
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input formControlName="dia_de_la_semana" class="form-check-input" type="radio" value=7 id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-              Domingo
-            </label>
-          </div>
-
-            </div>
-
-            <button (click)="validarActividad()" [disabled]="ilegal.invalid" type="button" class="btn btn-light">Registrar</button>
-            
-            
-        </form>
-        @if (bandera === 'existente') {
-            <p></p>
-            <div class="alert alert-warning" role="alert">
-                <h4>actividad ya existente</h4>
-            </div>
-            }
-        @if (bandera === 'error') {
-            <p></p>
-            <div class="alert alert-dark" role="alert">
-                <h4>error al postear</h4>
-            </div>
-            }
-        @if (bandera === 'correcto')
-        { 
-            <p></p>
-            <div class="alert alert-success" role="alert">
-                <h4>actividad registrada con exito</h4>
-            </div>
-            }
-        @if (bandera === 'mensaje') {
-            <p></p>
-            <div class="alert alert-warning" role="alert">
-                <h4>{{banana}}</h4>
-            </div>
-        }
+      <!-- Mensajes de alerta -->
+      @if (bandera === 'existente') {
+        <div class="alert alert-warning" role="alert">
+          <h4>Una actividad ya existe en el horario y dia especificado.</h4>
+        </div>
+      }
+      @if (bandera === 'error') {
+        <div class="alert alert-dark" role="alert">
+          <h4>error al postear</h4>
+        </div>
+      }
+      @if (bandera === 'correcto') {
+        <div class="alert alert-success" role="alert">
+          <h4>actividad registrada con éxito</h4>
+        </div>
+      }
+      @if (bandera === 'mensaje') {
+        <div class="alert alert-warning" role="alert">
+          <h4>{{banana}}</h4>
+        </div>
+      }
     </div>
+  </div>
 </body>
-

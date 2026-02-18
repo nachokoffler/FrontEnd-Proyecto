@@ -1,88 +1,53 @@
-
-<body class="listadoi">
+<body class="listadoi bg-dark text-light min-vh-100">
     <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover" href="usuario/menu-maestro/menu">
+        <a class="icon-link icon-link-hover text-light" href="usuario/menu-maestro/menu">
             ATRAS
             <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
         </a>
         <p></p>
-        <h2 class="tituloi">Inscripcion a actividad ILEGAL</h2>
+        <h2 class="tituloi">Inscripcion a actividad ilegal</h2>
         <p></p>
         @if (banana) {
             <div>
-                @for (item of service.ilegales.data; track $index) {
+                @for (item of service.ilegales; track $index) {
                     <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item">
+                        <li class="list-group-item bg-dark text-light">
                             <h5>
-                                nombre: {{item.nombre}}<br>
-                                locacion: {{item.locacion}} <br>
-                                descripcion: {{item.descripcion}} <br>
-                                @if (item.dia_de_la_semana == 1) {dia de la semana: Lunes <br>}
-                                @if (item.dia_de_la_semana == 2) {dia de la semana: Martes <br>}
-                                @if (item.dia_de_la_semana == 3) {dia de la semana: Miercoles <br>}
-                                @if (item.dia_de_la_semana == 4) {dia de la semana: Jueves <br>}
-                                @if (item.dia_de_la_semana == 5) {dia de la semana: Viernes <br>}
-                                @if (item.dia_de_la_semana == 6) {dia de la semana: Sabado <br>}
-                                @if (item.dia_de_la_semana == 7) {dia de la semana: Domingo <br>}
-                                hora de inicio: {{item.hora_inicio}} <br>
-                                hora de fin: {{item.hora_fin}} <br>
-                                cantidad maxima: {{item.cantidad_maxima}} <br>
-                                locacion: {{item.locacion}} <br>
+                                {{item.nombre}}<br>
+                                Locacion: {{item.locacion}} <br>
+                                Descripcion: {{item.descripcion}} <br>
+                                @if (item.dia_de_la_semana == 1) {Dia de la semana: Lunes <br>}
+                                @if (item.dia_de_la_semana == 2) {Dia de la semana: Martes <br>}
+                                @if (item.dia_de_la_semana == 3) {Dia de la semana: Miercoles <br>}
+                                @if (item.dia_de_la_semana == 4) {Dia de la semana: Jueves <br>}
+                                @if (item.dia_de_la_semana == 5) {Dia de la semana: Viernes <br>}
+                                @if (item.dia_de_la_semana == 6) {Dia de la semana: Sabado <br>}
+                                @if (item.dia_de_la_semana == 7) {Dia de la semana: Domingo <br>}
+                                Hora de inicio: {{item.hora_inicio}} <br>
+                                Hora de fin: {{item.hora_fin}} <br>
+                                Cantidad maxima: {{item.cantidad_maxima}} <br>
+                                Locacion: {{item.locacion}} <br>
                             </h5>
                         </li>
                         <p></p>
-                        <button class="btn btn-primary" (click)="open(content)">inscribir</button>
+                        <button class="btn btn-primary" (click)="open(content)">Inscribir</button>
 
                         <ng-template #content let-modal>
-                        <div class="modal-header">
+                        <div class="modal-header bg-dark text-light">
                             <h4 class="modal-title">Inscripcion de recluso a {{item.nombre}} </h4>
                             <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"></button>
                         </div>
-                        <div class="modal-body">
-                            <form [formGroup]="recluso" (submit)="validarRecluso(item)">
-                                <fieldset>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-default">codigo de recluso</span>
-                                        <input type="number" formControlName="cod_recluso" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                    </div>     
-                                </fieldset>
-                                <p></p>
-                            </form>
-                            <p></p>
-                                @if (banderaRecluso==='inscripto') {
-                                    <div class="alert alert-success" role="alert">
-                                        <h5>inscripcion valida</h5>
-                                    </div>
-                                }@else if (banderaRecluso==='no inscripto') {
-                                    <div class="alert alert-primary" role="alert">
-                                        <h5>recluso no encontrado</h5>
-                                    </div>
-                                }
-                                @else if (banderaRecluso==='existente'){
-                                    <div class="alert alert-warning" role="alert">
-                                        <h5>recluso ya inscripto</h5>
-                                    </div>
-                                }
-                                @else if (banderaRecluso =='message') {
-                                    <div class="alert alert-danger" role="alert">
-                                        <h5>{{error}}</h5>
-                                    </div>
-                                }
-                                @else if (banderaRecluso==='no encontrada') {
-                                    <div class="alert alert-dark" role="alert">
-                                        <p>actividad no encontrada</p>
-                                    </div>
-                                }
+                        <div class="modal-body bg-dark text-light">
+                            <!-- resto del formulario -->
                         </div>
-                        <div class="modal-footer">
-                            <button [disabled]="recluso.invalid" (click)="validarRecluso(item)" type="button" class="btn btn-success">enviar</button>
+                        <div class="modal-footer bg-dark text-light">
+                            <button [disabled]="recluso.invalid" (click)="validarRecluso(item)" type="button" class="btn btn-success">Inscribir</button>
                         </div>
                         </ng-template>   
                         <p></p>
                     </ul>
                     <p></p>
                 }
-                
             </div>
         }@else {
             <p></p>
@@ -90,7 +55,5 @@
                 <h4> NO hay actividades disponibles </h4>
             </div>
         }
-        
     </div>
-    
 </body>

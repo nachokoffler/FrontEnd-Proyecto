@@ -13,7 +13,7 @@ export class AltaIlegalComponent {
   constructor(private service : ActividadService){
     this.decripcion= new FormControl('',[Validators.required, Validators.maxLength(100),Validators.minLength(1)]);
     this.locacion= new FormControl('',[Validators.required,Validators.maxLength(60),Validators.min(1)]);
-    this.dia_de_la_semana = new FormControl('',[Validators.required,])
+    this.dia_de_la_semana = new FormControl('',)
     this.cantidad_maxima= new FormControl('',[Validators.required,]);
     this.nombre= new FormControl('',[Validators.required,Validators.maxLength(60),Validators.minLength(8)]);
     this.hora_inicio= new FormControl('',[Validators.required,Validators.maxLength(2)]);
@@ -41,13 +41,13 @@ export class AltaIlegalComponent {
   dia_de_la_semana: FormControl;
   banana: string | undefined
   cantidad_maxima: FormControl;
-
   hora_inicio:FormControl;
   hora_fin:FormControl;
 
 
   bandera:string |undefined;
   validarActividad(){
+    console.log(this.hora_inicio.value)
     console.log(this.ilegal.value)
     this.service.postIlegal(this.ilegal.value).subscribe({
       next:(data)=>{

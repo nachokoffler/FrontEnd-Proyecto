@@ -31,7 +31,8 @@ export class IncribirseIlegalComponent implements OnInit{
         this.banana=true
         if(data){
           console.log("se recuperaron las actividades 201",data)
-          this.service.ilegales=data
+          this.service.ilegales=data.ilegales
+          console.log(this.service.ilegales)
         }},
       error:(e)=>{
         if(e.status == 404){

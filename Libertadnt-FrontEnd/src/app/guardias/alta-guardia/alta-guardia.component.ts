@@ -11,7 +11,7 @@ import { GuardiasService } from '../guardias.service.js';
 })
 
 export class AltaGuardiaComponent {
-  constructor (private service : GuardiasService){
+  constructor (public service : GuardiasService){
     this.dni= new FormControl('',[Validators.required,Validators.maxLength(30)]);
     this.nombre= new FormControl('',[Validators.required,]);
     this.apellido= new FormControl('',[Validators.required,]);
@@ -39,23 +39,23 @@ export class AltaGuardiaComponent {
     this.service.postGuardia(this.service.guardia).subscribe({
       next:(data)=>{
         if(data){
-          console.log("el guardia se creo status = 201 ", data)
-          this.bandera='creado'
-        }
-        if(data){
-          this.bandera='existente'
-          console.log("el guardia ya existe y se reanuda el contrato status == 202")
+          this.bandera='contratado'
+          console.log(data)
+          console.log(data.cod_guardia)
+          this.service.guardia.cod_guardia = data.cod_guardia 
         }
       },
       error:(e)=>{
         if(e.status === 409){
           console.log("el guardia ya existe y se encuentra con contrato activo")
           this.bandera = 'activo'
+          console.log(e)
         }
         if(e.status === 400){
           console.log("error de msj")
           this.error=e.error.message
           this.bandera = 'msj'
+          console.log(e)
         }
       }
     })

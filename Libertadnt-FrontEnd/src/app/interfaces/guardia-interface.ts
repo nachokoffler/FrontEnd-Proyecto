@@ -7,5 +7,5 @@ export interface Guardia {
       dni: number,
       fecha_ini_contrato: Date | null,
       fecha_fin_contrato: Date | null,
-      turnos: Turno[] | null,
+      turnos: Turno[] | null
 }

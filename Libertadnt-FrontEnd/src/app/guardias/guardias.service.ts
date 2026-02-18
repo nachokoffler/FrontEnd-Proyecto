@@ -27,7 +27,7 @@ export class GuardiasService {
     return this.http.get<Guardia | JSON>(`${environment.API_URL}`+"guardias", {headers})
   }
   postGuardia(x:any){
-    return this.http.post<Guardia|JSON>(`${environment.API_URL}`+"guardias",x);
+    return this.http.post<Guardia>(`${environment.API_URL}`+"guardias",x);
   }
 
   putFinalizarGuardia(x:any){
