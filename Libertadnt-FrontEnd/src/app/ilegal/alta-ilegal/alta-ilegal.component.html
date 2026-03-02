@@ -3,14 +3,14 @@
   <div class="d-flex justify-content-center align-items-start min-vh-100">
     <div class="w-25 w-md-50 w-lg-25 p-3">
       <!-- Enlace de retroceso -->
-      <a class="icon-link icon-link-hover text-white" href="menu/actividad">
+      <a class="icon-link icon-link-hover text-white" href="usuario/menu-maestro/menu">
         ATRAS
         <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
       </a>
       <p></p>
 
       <!-- Título en rojo -->
-      <h2 class="text-center mb-4 text-danger">Crear actividad ilegal</h2>
+      <h2 class="text-center mb-4 text-danger">Ingrese los datos de la nueva actividad ilegal</h2>
 
       <form [formGroup]="ilegal" (submit)="validarActividad()">
         <!-- Nombre -->
@@ -114,12 +114,12 @@
       }
       @if (bandera === 'error') {
         <div class="alert alert-dark" role="alert">
-          <h4>error al postear</h4>
+          <h4>Error al postear</h4>
         </div>
       }
       @if (bandera === 'correcto') {
         <div class="alert alert-success" role="alert">
-          <h4>actividad registrada con éxito</h4>
+          <h4>Actividad registrada con éxito</h4>
         </div>
       }
       @if (bandera === 'mensaje') {

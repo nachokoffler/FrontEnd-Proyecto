@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class IncribirseIlegalComponent implements OnInit{
   constructor (public service : ActividadService,public sRecluso : ReclusosService, private modalService: NgbModal){
-    this.cod_recluso= new FormControl('',[Validators.required,]);
+    this.cod_recluso= new FormControl('',[Validators.required]);
   this.recluso = new FormGroup({
         cod_recluso:this.cod_recluso
       })    
@@ -51,6 +51,10 @@ export class IncribirseIlegalComponent implements OnInit{
     else if(x.inscripcion == true){x.inscripcion=false}
     console.log(x)
   }
+
+  cambiarBandera(){
+    this.banderaRecluso= undefined
+  }
   validarRecluso(x:any){
     console.log("codigo de actividad" ,x)
     console.log("codigo de recluso" ,this.cod_recluso.value)
@@ -58,8 +62,10 @@ export class IncribirseIlegalComponent implements OnInit{
       next:(data)=>{
         console.log("data",data.status);
         if(data.status == 201){
-          console.log("recluso inscripto ",data.status)
+          console.log("recluso inscripto ",data)
           this.banderaRecluso='inscripto'
+          this.error=data.message
+          console.log("mensaje: ",data.message)
         }
         if(data.status== 405){
           console.log("actividad no encontrada ",data.status)
@@ -67,15 +73,16 @@ export class IncribirseIlegalComponent implements OnInit{
         }
         if(data.status == 409){
           console.log("mensaje ", data ,data.message)
-          this.error=data.error.message
+          this.error=data.message
           this.banderaRecluso='message'
         }
       },
       error:(e)=>{
         console.log("error ", e.status)
         if(e.status == 404){
-          console.log("recluso no encontrado ",e.status)
+          console.log("recluso no encontrado ",e.status,e.error.message )
           this.banderaRecluso='no inscripto'
+          this.error=e.error.message
         }
         if(e.status == 409){
           console.log("mensaje ", e , e.message)
@@ -85,6 +92,7 @@ export class IncribirseIlegalComponent implements OnInit{
         if(e.status== 405){
           console.log("actividad no encontrada ",e.status)
           this.banderaRecluso='no encontrada'
+          this.error=e.error.message
         }
         }})
       this.recluso.reset();

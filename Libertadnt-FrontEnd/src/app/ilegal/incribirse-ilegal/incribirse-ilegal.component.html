@@ -1,9 +1,12 @@
 <body class="listadoi bg-dark text-light min-vh-100">
     <div class="w-50 p-3">
-        <a class="icon-link icon-link-hover text-light" href="usuario/menu-maestro/menu">
-            ATRAS
-            <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-        </a>
+       
+        <button type="button" class="btn btn-light" href="usuario/menu-maestro/menu" >  
+            <a href="usuario/menu-maestro/menu" class="link-primary">
+                    <button  type="button" class="btn-close" aria-label="Close"> 
+                    </button>    
+            </a>
+        </button>
         <p></p>
         <h2 class="tituloi">Inscripcion a actividad ilegal</h2>
         <p></p>
@@ -35,16 +38,41 @@
                         <ng-template #content let-modal>
                         <div class="modal-header bg-dark text-light">
                             <h4 class="modal-title">Inscripcion de recluso a {{item.nombre}} </h4>
-                            <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"></button>
+                            <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" (click)="cambiarBandera()"></button>
                         </div>
-                        <div class="modal-body bg-dark text-light">
-                            <!-- resto del formulario -->
-                        </div>
-                        <div class="modal-footer bg-dark text-light">
-                            <button [disabled]="recluso.invalid" (click)="validarRecluso(item)" type="button" class="btn btn-success">Inscribir</button>
-                        </div>
+                        <form [formGroup]="recluso" (submit)="validarRecluso(item)">
+                            <div class="modal-body bg-dark text-light">
+                                <div class="form-floating">
+                                <input type="number" class="form-control" formControlName="cod_recluso" id="cod_recluso" placeholder="Ingrese codigo recluso">
+                                <label for="floatingPassword">Codigo Recluso</label>
+                                </div>
+                            </div>
+                            
+
+                            <div class="modal-footer bg-dark text-light">
+                                <button [disabled]="recluso.invalid"  (click)="validarRecluso(item)"  type="button" class="btn btn-success">Inscribir</button>
+                            </div>
+                        </form>
+                            @if(banderaRecluso == 'no inscripto'){
+                                <div class="alert alert-danger" role="alert">
+                                <h4>{{error}}</h4>
+                                </div>
+                            }
+                            @if(banderaRecluso == 'message'){
+                                <div class="alert alert-danger" role="alert">
+                                <h4>{{error}}</h4>
+                                </div>
+                            }
+                            @if(banderaRecluso == 'inscripto'){
+                                <div class="alert alert-success" role="alert">
+                                <h4>{{error}}</h4>
+                                </div>
+                            }
+
+
                         </ng-template>   
                         <p></p>
+                        
                     </ul>
                     <p></p>
                 }
