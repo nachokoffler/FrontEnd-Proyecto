@@ -24,3 +24,6 @@ export class AuthGuardEspecial implements CanActivate {
     return isValid;
   }
 }
+
+
+

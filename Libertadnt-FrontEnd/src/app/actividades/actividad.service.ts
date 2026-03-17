@@ -62,14 +62,15 @@ export class ActividadService {
     // };
 
     // const sanitizedInput = {
-    //   ...raw,
+    //   ...raw)
     //   hora_inicio: parseHour(raw.hora_inicio),
     //   hora_fin: parseHour(raw.hora_fin)
     // };
-     uActual.hora_inicio =  parseInt(uActual.hora_inicio.substring(0, 2))
-     uActual.hora_fin =  parseInt(uActual.hora_fin.substring(0, 2)) 
-     uActual.cod_sector = parseInt(uActual.cod_sector)
-     uActual.dia_de_la_semana= parseInt(uActual.dia_de_la_semana)
+    console.log("actividad a enviar", uActual)
+    uActual.hora_inicio =  parseInt(uActual.hora_inicio.substring(0, 2))
+    uActual.hora_fin =  parseInt(uActual.hora_fin.substring(0, 2)) 
+    uActual.cod_sector = parseInt(uActual.cod_sector)
+    uActual.dia_de_la_semana = parseInt(uActual.dia_de_la_semana)
     return this.http.post<Actividad| JSON>(`${environment.API_URL}`+"actividades",uActual)
   }
   putActividad(id:any,uActual:Actividad){

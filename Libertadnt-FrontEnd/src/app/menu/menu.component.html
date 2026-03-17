@@ -2,39 +2,38 @@
 
 <body class="menu">
   <div class="w-50 p-3 mx-auto d-flex flex-column align-items-center">
-    <h1 class="text-center">Menu Principal</h1>
+      
+  
 
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="menu/recluso" class="link-offset-2 link-underline link-underline-opacity-0">Menu de Reclusos</a>
-    </div>
+        @if(bandera === false){
+          
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="src/assets/guardia.jpg" class="img-fluid rounded-start" alt="logo">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Libertan't</h5>
+                    <p class="card-text">Biembvenido usuario a nuestro sistema de gestion aespecializado en carceles dispobible 24/7</p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        }
+        
+        @if (bandera === true) {
 
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="menu/guardia" class="link-offset-2 link-underline link-underline-opacity-0">Menu de Guardias</a>
-    </div>
+                  <div class="card" style="width: 18rem;">
+                    <img src="/assets/guardia.jpg" class="card-img-top" alt="logo">
+                    <div class="card-body">
+                      <h5 class="card-title">Libertadn't</h5>
+                      <p class="card-text">Biembvenido Maestro a nuestro sistema de gestion aespecializado en carceles dispobible 24/7 para su disfrute </p>
+                      <a href="usuario/menu-maestro/menu" class="btn btn-primary">Menu</a>
+                    </div>
+                  </div>
 
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="menu/sentencia/sentencias" class="link-offset-2 link-underline link-underline-opacity-0">Listar todas las sentencias</a>
-    </div>
-
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="menu/actividad" class="link-offset-2 link-underline link-underline-opacity-0">Menu de Actividades</a>
-    </div>
-
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="usuario/:menu/ver-usuarios" class="link-offset-2 link-underline link-underline-opacity-0">Menu de administradores</a>
-    </div>
-
-    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-      <a href="usuario/menu/sector" class="link-offset-2 link-underline link-underline-opacity-0">Menu de sectores</a>
-    </div>
-
-    @if (bandera === true) {
-      <h2 class="text-center">BIENVENIDO MAESTRO</h2>
-      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 text-center">
-        <a href="usuario/menu-maestro/menu" class="link-offset-2 link-underline link-underline-opacity-0">
-          Negocio ILEGAL
-        </a>
-      </div>
-    }
+        }
   </div>
 </body>

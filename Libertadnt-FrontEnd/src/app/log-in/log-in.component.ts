@@ -1,10 +1,11 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
 import { RouterOutlet ,RouterLink, Route, Router, ActivatedRoute} from '@angular/router';
 import { UsuarioService } from './usuario.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
-export class LogInComponent  { 
+export class LogInComponent   { 
+  @Output() eslogin = new EventEmitter<string>();
   usuario: FormGroup;
   cod_administrador:FormControl;
   contrasenia: FormControl;
@@ -37,6 +39,10 @@ export class LogInComponent  {
       }
     })
   }
+    
+
+    
+   
       
 
 

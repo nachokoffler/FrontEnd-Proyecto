@@ -16,9 +16,6 @@ export const Interceptor_token_fallida: HttpInterceptorFn = (req: HttpRequest<un
         if(error.message == 'token expirado'){
           router.navigate(['/expirado'])
         } 
-        // else {
-        
-        // }
       }
       return throwError(() => error);
     })

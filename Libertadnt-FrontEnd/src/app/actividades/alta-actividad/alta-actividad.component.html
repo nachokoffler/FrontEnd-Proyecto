@@ -7,7 +7,7 @@
     </a>
     <p></p>
 
-    <h2 class="text-center mb-4">Ingrese datos de la actividad</h2>
+    <h2 class="text-center mb-4 text-decoration-underline"s>Ingrese datos de la actividad</h2>
 
     <form [formGroup]="actividad" (submit)="validarActividad()">
 
@@ -28,13 +28,18 @@
 
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Hora de inicio</span>
-        <input type="time" step="3600" value=number formControlName="hora_inicio" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="time" placeholder="0000"  formControlName="hora_inicio" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
+
+
 
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Hora de fin</span>
-        <input type="time" value=number step="3600" formControlName="hora_fin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="time" placeholder="0000"  formControlName="hora_fin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
+
+     
+
                         <!-- Botón que controla el colapso de dia de la semana -->
 
       <p class="d-inline-flex gap-1">
@@ -179,7 +184,7 @@
        <p></p>
 
         <p></p>
-        <button [disabled]="actividad.invalid"  (click)="validarActividad()" cias type="button" class="btn btn-primary" >Crear</button>
+        <button [disabled]="actividad.invalid"  (click)="validarActividad()"  type="button" class="btn btn-primary" >Crear</button>
     <p></p>
 
     @if (bandActividad == 'exito') {

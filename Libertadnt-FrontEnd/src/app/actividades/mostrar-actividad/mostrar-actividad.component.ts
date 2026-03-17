@@ -29,3 +29,6 @@ export class MostrarActividadComponent implements OnInit{
     })
   }
 }
+
+
+

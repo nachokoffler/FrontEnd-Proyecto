@@ -11,14 +11,14 @@ import { ActividadService } from '../actividad.service.js';
   styleUrl: './alta-actividad.component.css'
 })
 export class AltaActividadComponent {
+number: any;
   constructor (private service : ActividadService){
     this.nombre= new FormControl('',[Validators.required,Validators.maxLength(30)]);
-    this.cod_actividad= new FormControl('',[]);
     this.cod_sector= new FormControl('',[Validators.required]);
     this.descripcion= new FormControl('',[Validators.required,]);
     this.locacion= new FormControl('',[Validators.required,]);
-    this.hora_inicio= new FormControl(0,[Validators.required,]);
-    this.hora_fin = new FormControl(0,[Validators.required,]);
+    this.hora_inicio= new FormControl('00:00',[Validators.required,]);
+    this.hora_fin = new FormControl('00:00',[Validators.required,]);
     this.dia_de_la_semana = new FormControl(0,[Validators.required])
     this.cantidad_minima= new FormControl('',[Validators.required,]);
     this.edad_minima= new FormControl('',[Validators.required,]);
@@ -27,7 +27,6 @@ export class AltaActividadComponent {
     this.actividad = new FormGroup({
       nombre: this.nombre,
       descripcion: this.descripcion,
-      cod_actividad: this.cod_actividad,
       locacion: this.locacion,
       hora_inicio: this.hora_inicio,
       hora_fin: this.hora_fin,
@@ -42,7 +41,6 @@ export class AltaActividadComponent {
   actividad: FormGroup;
   descripcion: FormControl;
   locacion: FormControl;
-  cod_actividad: FormControl;
   cod_sector: FormControl;
   dia_de_la_semana: FormControl;
   hora_inicio: FormControl;

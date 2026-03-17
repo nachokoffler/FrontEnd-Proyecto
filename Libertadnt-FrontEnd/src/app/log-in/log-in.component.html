@@ -3,24 +3,25 @@
             
         <h1 class="text-center mb-4">BIENVENIDO</h1>
         <p></p>
-                
-                
-                    <form [formGroup]="usuario" (submit)="validarUsuarios()" >
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control"  formControlName="cod_administrador" placeholder="ingrese codigo de usuario">
-                            <label >codigo de usuario:</label>
-                        </div>
+        <form [formGroup]="usuario" (submit)="validarUsuarios()">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">
+                   <h6>Codigo de usuario</h6> 
+                </label>
+                <input type="number" formControlName="cod_administrador" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text"> </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1"  class="form-label">
+                  <h6>Contraseña</h6>  
+                </label>
+                <input type="password" class="form-control" formControlName="contrasenia" id="exampleInputPassword1">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" [disabled]="usuario.invalid">Ingresar</button>
+            </div>
+        </form>
 
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control"  formControlName="contrasenia" placeholder="ingrese contraseña de usuario">
-                            <label >contraseña:</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" [disabled]="usuario.invalid">Ingresar</button>
-                        <!-- <button (click)="validarUsuarios()" type="button" class="btn btn-primary" [disabled]="usuario.invalid">enviar</button> -->
-
-                        <p></p>
-                    </form>
                 
                 
                     @if (bandUsuario === 'no encontrado' || bandUsuario === 'incorrecto') {

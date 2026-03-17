@@ -11,7 +11,7 @@ export const auth500Interceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 500) {
+      if(error.status === 500) {
         sessionStorage.setItem("ultima ruta", router.url);
         console.error('Error de servidor');
         console.log('Dirección: ', router.url);
@@ -22,4 +22,3 @@ export const auth500Interceptor: HttpInterceptorFn = (req, next) => {
     })
   );
 };
-
