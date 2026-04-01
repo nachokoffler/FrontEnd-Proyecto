@@ -1,87 +1,85 @@
-<body class="listadoi bg-dark text-light min-vh-100">
-    <div class="w-50 p-3">
-       
-        <button type="button" class="btn btn-light" href="usuario/menu-maestro/menu" >  
-            <a href="usuario/menu-maestro/menu" class="link-primary">
-                    <button  type="button" class="btn-close" aria-label="Close"> 
-                    </button>    
-            </a>
-        </button>
-        <p></p>
-        <h2 class="tituloi">Inscripcion a actividad ilegal</h2>
-        <p></p>
-        @if (banana) {
-            <div>
-                @for (item of service.ilegales; track $index) {
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item bg-dark text-light">
-                            <h5>
-                                {{item.nombre}}<br>
-                                Locacion: {{item.locacion}} <br>
-                                Descripcion: {{item.descripcion}} <br>
-                                @if (item.dia_de_la_semana == 1) {Dia de la semana: Lunes <br>}
-                                @if (item.dia_de_la_semana == 2) {Dia de la semana: Martes <br>}
-                                @if (item.dia_de_la_semana == 3) {Dia de la semana: Miercoles <br>}
-                                @if (item.dia_de_la_semana == 4) {Dia de la semana: Jueves <br>}
-                                @if (item.dia_de_la_semana == 5) {Dia de la semana: Viernes <br>}
-                                @if (item.dia_de_la_semana == 6) {Dia de la semana: Sabado <br>}
-                                @if (item.dia_de_la_semana == 7) {Dia de la semana: Domingo <br>}
-                                Hora de inicio: {{item.hora_inicio}} <br>
-                                Hora de fin: {{item.hora_fin}} <br>
-                                Cantidad maxima: {{item.cantidad_maxima}} <br>
-                                Locacion: {{item.locacion}} <br>
-                            </h5>
-                        </li>
-                        <p></p>
-                        <button class="btn btn-primary" (click)="open(content)">Inscribir</button>
+<body style="background-color: black; min-height: 100vh;">
+    <div class="container-fluid px-4 py-3">
 
-                        <ng-template #content let-modal>
+        <div class="text-center">
+            <h2 class="mb-4" style="color: #dc3545;">Inscripcion a actividad ilegal</h2>
+        </div>
+
+        @if (banana) {
+            <div class="row row-cols-1 row-cols-md-4 g-3">
+                @for (item of service.ilegales; track $index) {
+                    <div class="col">
+                        <div class="card h-100 bg-dark text-white border-secondary">
+                            <div class="card-body p-2 d-flex flex-column">
+                                <h6 class="card-title mb-1" style="color: #dc3545;">{{item.nombre}}</h6>
+                                <hr class="border-secondary my-1">
+                                <small>
+                                    <p class="card-text mb-1"><strong>Locacion:</strong> {{item.locacion}}</p>
+                                    <p class="card-text mb-1"><strong>Descripcion:</strong> {{item.descripcion}}</p>
+                                    <p class="card-text mb-1"><strong>Hora de Inicio:</strong> {{item.hora_inicio}}</p>
+                                    <p class="card-text mb-1"><strong>Hora de Fin:</strong> {{item.hora_fin}}</p>
+                                    <p class="card-text mb-1"><strong>Cupo máximo:</strong> {{item.cantidad_maxima}}</p>
+                                    <p class="card-text mb-1">
+                                        <strong>Día:</strong>
+                                        @if (item.dia_de_la_semana == 1) { Lunes }
+                                        @if (item.dia_de_la_semana == 2) { Martes }
+                                        @if (item.dia_de_la_semana == 3) { Miércoles }
+                                        @if (item.dia_de_la_semana == 4) { Jueves }
+                                        @if (item.dia_de_la_semana == 5) { Viernes }
+                                        @if (item.dia_de_la_semana == 6) { Sábado }
+                                        @if (item.dia_de_la_semana == 7) { Domingo }
+                                    </p>
+                                </small>
+
+                                <div class="d-flex justify-content-end mt-auto">
+                                    <button class="btn btn-danger btn-sm" (click)="open(content)">Inscribir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <ng-template #content let-modal>
                         <div class="modal-header bg-dark text-light">
-                            <h4 class="modal-title">Inscripcion de recluso a {{item.nombre}} </h4>
-                            <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" (click)="cambiarBandera()"></button>
+                            <h4 class="modal-title" style="color: #dc3545;">Inscripcion de recluso a {{item.nombre}}</h4>
+                            <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss('Cross click')" (click)="cambiarBandera()"></button>
                         </div>
                         <form [formGroup]="recluso" (submit)="validarRecluso(item)">
                             <div class="modal-body bg-dark text-light">
                                 <div class="form-floating">
-                                <input type="number" class="form-control" formControlName="cod_recluso" id="cod_recluso" placeholder="Ingrese codigo recluso">
-                                <label for="floatingPassword">Codigo Recluso</label>
+                                    <input type="number" class="form-control bg-dark text-white border-secondary" formControlName="cod_recluso" id="cod_recluso" placeholder="Ingrese codigo recluso">
+                                    <label for="cod_recluso" class="text-secondary">Codigo Recluso</label>
                                 </div>
                             </div>
-                            
-
                             <div class="modal-footer bg-dark text-light">
-                                <button [disabled]="recluso.invalid"  (click)="validarRecluso(item)"  type="button" class="btn btn-success">Inscribir</button>
+                                <button [disabled]="recluso.invalid" (click)="validarRecluso(item)" type="button" class="btn btn-success">Confirmar</button>
                             </div>
                         </form>
-                            @if(banderaRecluso == 'no inscripto'){
-                                <div class="alert alert-danger" role="alert">
-                                <h4>{{error}}</h4>
-                                </div>
-                            }
-                            @if(banderaRecluso == 'message'){
-                                <div class="alert alert-danger" role="alert">
-                                <h4>{{error}}</h4>
-                                </div>
-                            }
-                            @if(banderaRecluso == 'inscripto'){
-                                <div class="alert alert-success" role="alert">
-                                <h4>{{error}}</h4>
-                                </div>
-                            }
 
+                        @if(banderaRecluso == 'no inscripto'){
+                            <div class="alert alert-danger m-3" role="alert">
+                                <h4>{{error}}</h4>
+                            </div>
+                        }
+                        @if(banderaRecluso == 'message'){
+                            <div class="alert alert-danger m-3" role="alert">
+                                <h4>{{error}}</h4>
+                            </div>
+                        }
+                        @if(banderaRecluso == 'inscripto'){
+                            <div class="alert alert-success m-3" role="alert">
+                                <h4>{{error}}</h4>
+                            </div>
+                        }
+                    </ng-template>
 
-                        </ng-template>   
-                        <p></p>
-                        
-                    </ul>
-                    <p></p>
                 }
             </div>
-        }@else {
-            <p></p>
+        } @else {
             <div class="alert alert-danger" role="alert">
-                <h4> NO hay actividades disponibles </h4>
+                <h4>NO hay actividades disponibles</h4>
             </div>
         }
+
     </div>
 </body>

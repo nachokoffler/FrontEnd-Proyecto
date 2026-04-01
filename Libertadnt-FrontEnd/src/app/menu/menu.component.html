@@ -2,27 +2,37 @@
 
 <body class="menu">
   <div class="w-50 p-3 mx-auto d-flex flex-column align-items-center">
-      
-  
-
-        @if(bandera === false){
-          
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="src/assets/guardia.jpg" class="img-fluid rounded-start" alt="logo">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Libertan't</h5>
-                    <p class="card-text">Biembvenido usuario a nuestro sistema de gestion aespecializado en carceles dispobible 24/7</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-              </div>
+        <p></p>
+    
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="../../../../assets/guardias.png" class="d-block w-100" alt="imagen 1">
             </div>
-        }
-        
+
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="..." class="d-block w-100" alt="imagen 2">
+            </div>
+
+            <div class="carousel-item">
+              <img src="..." class="d-block w-100" alt="imagen 3">
+            </div>
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <p></p>
+        <p></p>
+        <p></p>
+ 
         @if (bandera === true) {
 
                   <div class="card" style="width: 18rem;">

@@ -1,55 +1,95 @@
 <body class="listado">
-    <div class="container-fluid">
-        <!-- Contenido centrado -->
-        <div class="d-flex flex-column justify-content-center align-items-center min-vh-100">
-            
-            <!-- Breadcrumb centrado arriba del título -->
-            <nav aria-label="breadcrumb" class="mb-2">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="usuario/:menu">Menu</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Administradores</li>
-                </ol>
-            </nav>
+  <div class="w-75 p-3">
 
-            <!-- Contenido principal -->
-            <div class="w-25 p-3 text-center">
-                <h2 class="mb-4">Listado de Administradores</h2>
-                
-                @if (bandera === true) {
-                    @for (item of service.usuarios.data; track $index) {
-                        <div class="d-flex justify-content-center mb-3">
-                            <div class="list-group w-100">
-                                <div class="list-group-item">
-                                    <h5 class="mb-0">
-                                        Codigo del administrador: {{item.cod_administrador}}<br>
-                                        Nombre: {{item.nombre}}<br>
-                                        Apellido: {{item.apellido}}
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                } 
-                @if (bandera === false) {
-                    <div class="alert alert-primary" role="alert">
-                        <p>No hay administradores para mostrar</p>
-                    </div>
-                }
-                @if (bandera === undefined) {
-                    <div class="alert alert-warning" role="alert">
-                        <h4>Problema de servidor</h4>
-                    </div>
-                }
+    <h2 class="text-center mb-4">Listado de Administradores</h2>
+
+    @if (bandera === true) {
+      <div class="row row-cols-1 row-cols-md-5 g-4">
+        @for (item of service.usuarios.data; track $index) {
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
+                <hr>
+                <p class="card-text"><strong>Codigo:</strong> {{item.cod_administrador}}</p>
+
+                <div class="d-flex justify-content-end mt-auto">
+                  <button type="button" class="btn btn-danger" 
+                          data-bs-toggle="modal" 
+                          [attr.data-bs-target]="'#modal1-' + item.cod_administrador">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
+
+          <!-- Modal 1 - Confirmación -->
+          <div class="modal fade" 
+               [id]="'modal1-' + item.cod_administrador"
+               aria-hidden="true"
+               tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">¿Está seguro de la eliminación?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Codigo:</strong> {{item.cod_administrador}}</p>
+                  <p><strong>Nombre:</strong> {{item.nombre}}</p>
+                  <p><strong>Apellido:</strong> {{item.apellido}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-danger"
+                          [attr.data-bs-target]="'#modal2-' + item.cod_administrador"
+                          data-bs-toggle="modal"
+                          (click)="eliminar(item)">
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal 2 - Resultado -->
+          <div class="modal fade"
+               [id]="'modal2-' + item.cod_administrador"
+               aria-hidden="true"
+               tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Eliminación exitosa</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="alert alert-success" role="alert">
+                    El administrador <strong>{{item.nombre}} {{item.apellido}}</strong> fue eliminado correctamente.
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="recargar()">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        }
+      </div>
+    }
+
+    @if (bandera === false) {
+      <div class="alert alert-primary" role="alert">
+        <p>No hay administradores para mostrar</p>
+      </div>
+    }
+
+    @if (bandera === undefined) {
+      <div class="alert alert-warning" role="alert">
+        <h4>Problema de servidor</h4>
+      </div>
+    }
+
+  </div>
 </body>
-
-
-
-
-
-
-
-
-

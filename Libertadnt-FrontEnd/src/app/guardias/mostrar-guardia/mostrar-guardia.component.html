@@ -1,31 +1,26 @@
 <body class="listado">
-  <div class="w-25 p-3">
-    <a class="icon-link icon-link-hover" href="menu/guardia">
-      ATRAS
-      <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-    </a>
+  <div class="w-75 p-3 mt-0 pt-0">
     <p></p>
-    <h2 class="text-center mb-4">Guardias Activos</h2>
-    <p></p>
+    <div class="text-center">
+      <img src="../../../../assets/guardias.png" class="img-fluid w-50" alt="imagen">
+      <h2 class="mb-4">Guardias Activos</h2>
+    </div>
 
-    @for (item of service.guardias.data; track $index) {
-      <ul class="list-group">
-        <li class="list-group-item disabled" aria-disabled="true">
-          <h5>Codigo de guardia: {{item.cod_guardia}}<br>
-            Nombre: {{item.nombre}}<br>
-            Apellido: {{item.apellido}}<br>
-            DNI: {{item.dni}}<br>
-          </h5>
-        </li>
-      </ul>
-      <p></p>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      @for (item of service.guardias.data; track $index) {
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
+              <hr>
+              <p class="card-text"><strong>Codigo:</strong> {{item.cod_guardia}}</p>
+              <p class="card-text"><strong>DNI:</strong> {{item.dni}}</p>
+            </div>
+          </div>
+        </div>
+        
       }
+    </div>
+
   </div>
-  
-
-  
-  
-  
-
-  
-    
+</body>

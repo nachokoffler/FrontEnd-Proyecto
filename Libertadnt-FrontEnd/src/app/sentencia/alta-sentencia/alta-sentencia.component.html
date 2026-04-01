@@ -1,61 +1,47 @@
-
 <body class="formulario">
-    <div class="w-50 p-3">
+    <div class="w-25 p-3">
 
-        <a class="icon-link icon-link-hover" href="menu/sentencia">
-          ATRAS
-          <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-        </a>
-        <p></p>
+        <h2 class="text-center mb-3">Registrar Sentencia</h2>
     
-        <h2>Alta Sentencia</h2>
-    
-        <form [formGroup]= "sentencia" >
-    
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-            <input type="text" formControlName="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-          </div>
-    
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">descripcion</span>
-            <input type="text" formControlName="descripcion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <form [formGroup]="sentencia" >
+
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+              <input type="text" formControlName="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <span class="form-text ms-1">de 5 a 100 caracteres</span>
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">duracion en años</span>
-            <input type="number" formControlName="duracion_anios" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Descripcion</span>
+              <input type="text" formControlName="descripcion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <span class="form-text ms-1">de 0 a 200 caracteres</span>
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">orden de gravedad</span>
-            <input type="number" formControlName="orden_de_gravedad" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroup-sizing-default">Duracion en años</span>
+              <input type="number" formControlName="duracion_anios" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <span class="form-text ms-1"></span>
           </div>
 
-          <button (click)="enviarFormulario()" type="button" class="btn btn-primary">Enviar</button>
+          <button (click)="enviarFormulario()" [disabled]="sentencia.invalid" type="button" class="btn btn-primary w-100">Registrar</button>
         </form>
         <p></p>
 
         @if (bandera == 'creada') {
           <div class="alert alert-success" role="alert">
-            <h5> la sentencia fue creada con exito</h5>
+            <h5> La sentencia fue creada con exito</h5>
           </div>
         }@else if (bandera == 'gravedad') {
           <div class="alert alert-danger" role="alert">
-            <h5> la gravedad coincide con otra</h5>
-          </div>
-        }@else if (bandera == 'nombre') {
-          <div class="alert alert-danger" role="alert">
-            <h5>el nombre coincide con otra sentencia </h5>
-          </div>
-        }@else if (bandera == 'error') {
-          <div class="alert alert-danger" role="alert">
-            <h5>{{error}}</h5>
+            <h5> El nombre coincide con otra</h5>
           </div>
         }
 
     </div>
 </body>
-  
-
-

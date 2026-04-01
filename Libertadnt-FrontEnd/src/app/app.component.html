@@ -29,8 +29,11 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Reclusos
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('recluso')}">
+                <i class="bi bi-person-fill"></i> Reclusos
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="menu/recluso/alta-recluso">Ingresar nuevo Recluso</a></li>
@@ -40,8 +43,11 @@
             </li>
 
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Guardias
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('guardia')}">
+                <i class="bi bi-shield-fill"></i> Guardias
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="menu/guardia/alta-guardia">Registrar nuevo guardia</a></li>
@@ -52,17 +58,26 @@
             </li>
 
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Sentencias
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('sentencia')}">
+                <i class="bi bi-journal-text"></i> Sentencias
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="menu/sentencia/sentencias">Sentencias disponibles</a></li>
+                @if(bandera){
+                  <li><a class="dropdown-item" href="menu/sentencia/alta">Crear Sentencias </a></li>
+                }
               </ul>
             </li>
 
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Actividades
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('actividad')}">
+                <i class="bi bi-clipboard-fill"></i> Actividades
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="menu/actividad/alta-actividad">Crear actividad</a></li>
@@ -72,27 +87,37 @@
             </li>
 
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Administradores
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('ver-usuarios')}">
+                <i class="bi bi-gear-fill"></i> Administradores
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="usuario/:menu/ver-usuarios">Crear actividad</a></li>
+                <li><a class="dropdown-item" href="usuario/:menu/ver-usuarios">Mostrar todos los adminsitradores</a></li>
               </ul>
             </li>
 
             <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Sectores
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('sector')}">
+                <i class="bi bi-building-fill"></i> Sectores
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="usuario/menu/sector">Menu de sectores</a></li>
+                <li><a class="dropdown-item" href="usuario/menu/sector/crear">Crear sectores</a></li>
               </ul>
             </li>
 
             @if(bandera == true){
               <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Actividades ilegales
+                <button class="btn btn-dark dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        [ngClass]="{'btn-primary': rutaActual.includes('menu-maestro')}">
+                  <i class="bi bi-exclamation-triangle-fill"></i> Actividades ilegales
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="usuario/menu-maestro/menu/alta-actvidad">Crear actividad ilegal</a></li>
@@ -109,55 +134,50 @@
   }
 
   <!-- Contenido del router -->
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 
-  <!-- Botón fijo esquina inferior derecha -->
-  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
-    <button class="navbar-toggler bg-dark" type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasBottom"
-            aria-controls="offcanvasBottom"
-            style="border: 1px solid rgba(255,255,255,0.3); padding: 8px 10px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30">
-        <path stroke="rgba(255,255,255,0.85)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Offcanvas -->
-  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasBottomLabel">Acerca de nosotros</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  @if(banana == false){
+    <!-- Botón fijo esquina inferior derecha -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
+      <button class="navbar-toggler bg-dark" type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasBottom"
+              aria-controls="offcanvasBottom"
+              style="border: 1px solid rgba(255,255,255,0.3); padding: 8px 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 30 30">
+          <path stroke="rgba(255,255,255,0.85)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/>
+        </svg>
+      </button>
     </div>
-    <div class="offcanvas-body small">
-      <!--dentro del footer --->
 
-      <p>Somos una plataforma diseñada para optimizar la gestión integral de instituciones penitenciarias, brindando herramientas digitales que permiten organizar de manera eficiente las operaciones diarias. Nuestro sistema centraliza la administración de personal, turnos y población penitenciaria, facilitando el acceso a la información y mejorando la toma de decisiones.
-
-        Nos enfocamos en ofrecer una solución confiable, segura y fácil de usar, que contribuya a una gestión más ordenada, transparente y eficiente. A través de la automatización de procesos y el registro estructurado de datos, buscamos reducir errores, ahorrar tiempo y fortalecer el control operativo dentro del entorno penitenciario.
-
-        Nuestro compromiso es acompañar la modernización del sistema, incorporando tecnología que simplifique tareas complejas y mejore la coordinación entre los distintos actores involucrados.
-      </p>
-
-
-
-
-
-      <p class="d-inline-flex gap-1">
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Button with data-bs-target
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          
-          <button type="button" class="btn btn-outline-danger">log out</button>
-
-        </div>
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Acerca de nosotros</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
+      <div class="offcanvas-body small">
+        <!--dentro del footer --->
+        <p>Somos una plataforma diseñada para optimizar la gestión integral de instituciones penitenciarias, brindando herramientas digitales que permiten organizar de manera eficiente las operaciones diarias. Nuestro sistema centraliza la administración de personal, turnos y población penitenciaria, facilitando el acceso a la información y mejorando la toma de decisiones.
 
+          Nos enfocamos en ofrecer una solución confiable, segura y fácil de usar, que contribuya a una gestión más ordenada, transparente y eficiente. A través de la automatización de procesos y el registro estructurado de datos, buscamos reducir errores, ahorrar tiempo y fortalecer el control operativo dentro del entorno penitenciario.
+
+          Nuestro compromiso es acompañar la modernización del sistema, incorporando tecnología que simplifique tareas complejas y mejore la coordinación entre los distintos actores involucrados.
+        </p>
+
+        <p class="d-inline-flex gap-1">
+          <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Cerrar sesion
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-danger w-auto mx-auto" (click)="cerrarSesion()">Confirmar</button>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
+  }
 
 </body>

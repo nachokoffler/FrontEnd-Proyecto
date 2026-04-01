@@ -1,13 +1,7 @@
 
 <body class="formulario">
   <div class="w-25 p-3">
-    <a class="icon-link icon-link-hover" href="menu/recluso">
-      ATRAS
-      <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-    </a>
-    <p></p>
-    <p></p>
-    <p></p>
+    <img src="../../../../assets/Screenshot 2026-03-20 185659.png"  class="img-fluid" alt="imagen">
     <h2>Buscar Recluso</h2>
 
     <form [formGroup]="recluso" (submit)="validarRecluso()">
@@ -31,9 +25,11 @@
       
     }
     @if (bandera == false) {
-      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-        <p>recluso no encontrado</p>
+      
+      <div class="alert alert-danger" role="alert">
+        <h5>Recluso no encontrado</h5>
       </div>
+
     }
    
 

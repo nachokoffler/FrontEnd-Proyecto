@@ -1,10 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 html, body{
     height: 100%;
-    background-color: #a2a6aa
-    
-   
-    
+    background-color: #a2a6aa;
+    margin: 0;
+    padding: 0;
 }
 .tituloi{
   color: #f72104;
@@ -17,10 +16,10 @@ html, body{
   margin-bottom: 10px;
   width: 100%;
   text-align: left;
-  background-color:  #090100
+  background-color: #090100
 }
 .formularioi{
-  background-color:  #090100;
+  background-color: #090100;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -31,13 +30,13 @@ html, body{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color:  #090100;
+  background-color: #090100;
   width: 150vw;
   height: 150vh;
-  color: white; /* Opcional, para que el texto sea visible */
+  color: white;
 }
 .login{
-  background-color:  #a2a6aa;
+  background-color: #a2a6aa;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -54,25 +53,25 @@ html, body{
     margin-bottom: 10px;
   }
 .menu{
-  
   margin-bottom: 10px;
   width: 100%;
   text-align: left;
-  background-color:  #a2a6aa
-  
+  background-color: #a2a6aa
 }
 .formulario{
-  background-color:  #a2a6aa;
+  background-color: #a2a6aa;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  
+  align-items: flex-start;
+  padding-top: 10px;
 }
 .listado{
-  background-color:  #a2a6aa;
+  background-color: #a2a6aa;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 0;
+  margin-top: 0;
 }

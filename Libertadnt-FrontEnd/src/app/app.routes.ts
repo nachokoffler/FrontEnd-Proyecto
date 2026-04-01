@@ -38,6 +38,7 @@ import { CrearTurnosComponent } from './sector/crear-turnos/crear-turnos.compone
 import { FinalizarTurnosComponent } from './sector/finalizar-turnos/finalizar-turnos.component.js'
 import { AuthGuard } from './shared/authguards/auth.guard.js';
 import { AuthGuardEspecial } from './shared/authguards/auth.guard_especial.js';
+import { CrearSectorComponent } from './sector/crear-sector/crear-sector.component.js';
 
 export const routes: Routes = [
     //log in
@@ -79,6 +80,8 @@ export const routes: Routes = [
     {path: 'menu/taller/mostrar-taller', component: MostrarTallerComponent, canActivate: [AuthGuard] },
     //sector
     {path: 'usuario/menu/sector', component: MenuSectorComponent, canActivate: [AuthGuard] },
+    {path: 'usuario/menu/sector/crear', component: CrearSectorComponent, canActivate: [AuthGuard] },
+    
     {path: 'usuario/menu/sector/t/:sector', component: MenuTurnosComponent, canActivate: [AuthGuard] },
     {path: 'usuario/menu/sector/c/:sector', component: MostrarCeldasComponent, canActivate: [AuthGuard] },
     {path: 'usuario/menu/sector/t/:sector/crear-turnos', component: CrearTurnosComponent, canActivate: [AuthGuard] },

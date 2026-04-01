@@ -31,9 +31,9 @@ export class UsuarioService {
   postAdministrador(uActual:Usuario){
     return this.http.post<Usuario>(`${environment.API_URL}`+"administradores/logIn", uActual)
   }
-
+  deleteAdministrador(cod_administrador:number){
+    return this.http.delete<Usuario| JSON>(`${environment.API_URL}`+"administradores/"+`${cod_administrador}`)
+  }
 }
-
-
 
 

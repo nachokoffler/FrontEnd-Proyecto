@@ -1,9 +1,14 @@
 <body class="login">
     <div class="w-25 p-3">
-            
-        <h1 class="text-center mb-4">BIENVENIDO</h1>
+        <div class="text-center">
+            <img src="../../../../assets/logo.png" class="img-fluid w-25" alt="imagen">
+        </div>
+        <p></p>
+        
+        <h1 class="text-center mb-4">Ingrese a Libertand't</h1>
         <p></p>
         <form [formGroup]="usuario" (submit)="validarUsuarios()">
+            
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">
                    <h6>Codigo de usuario</h6> 
@@ -22,26 +27,21 @@
             </div>
         </form>
 
-                
-                
-                    @if (bandUsuario === 'no encontrado' || bandUsuario === 'incorrecto') {
-
-                        <div  class="alert alert-warning" role="alert">
-                            <h4>Usuario o contraseña incorrecta</h4>
-                        </div>
-                    }
-                    @if ( bandUsuario == 'noAutorizado' ) {
-
-                        <div  class="alert alert-warning" role="alert">
-                            <h4>Sesión no fue correctamente autorizada, ingrese nuevamente</h4>
-                        </div>
-                    }@if (bandUsuario === 'expirado') {
-
-                        <div  class="alert alert-warning" role="alert">
-                            <h4>Sesión fue expirada, ingrese nuevamente</h4>
-                        </div>
-                    }
+        @if (bandUsuario === 'no encontrado' || bandUsuario === 'incorrecto') {
+            <div class="alert alert-warning" role="alert">
+                <h4>Usuario o contraseña incorrecta</h4>
+            </div>
+        }
+        @if ( bandUsuario == 'noAutorizado' ) {
+            <div class="alert alert-warning" role="alert">
+                <h4>Sesión no fue correctamente autorizada, ingrese nuevamente</h4>
+            </div>
+        }
+        @if (bandUsuario === 'expirado') {
+            <div class="alert alert-warning" role="alert">
+                <h4>Sesión fue expirada, ingrese nuevamente</h4>
+            </div>
+        }
     </div>
     
 </body>
-

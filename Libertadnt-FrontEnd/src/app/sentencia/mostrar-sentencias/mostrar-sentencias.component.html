@@ -1,30 +1,22 @@
+<body class="listado">
+  <div class="w-75 p-3">
+    <h1 class="text-center mb-4">Sentencias Activas</h1>
 
-<body class="listado"> 
-  <div class="w-50 p-3">
-    <a class="icon-link icon-link-hover" href="usuario/:menu">
-      ATRAS
-      <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-    </a>
-    <p></p>
-    <p></p>
-    <h1 class="text-center">Sentencias Activas</h1>
-    <p></p>
-    
-    <ul>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       @for (item of service.sentencia.data; track $index) {
-        <ul class="list-group">
-          <li class="list-group-item disabled" aria-disabled="true">
-            <h4>
-              Codigo de sentencia: {{item.cod_sentencia}}<br>
-              Nombre: {{item.nombre}} <br>
-              Descripcion: {{item.descripcion}}<br>
-              Duracion en años: {{item.duracion_anios}}<br>
-              Orden de gravedad: {{item.orden_de_gravedad}}<br>
-            </h4>
-            </li>
-        </ul>
-        <p></p>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{item.nombre}}</h5>
+              <hr>
+              <p class="card-text"><strong>Codigo:</strong> {{item.cod_sentencia}}</p>
+              <p class="card-text"><strong>Descripción:</strong> {{item.descripcion}}</p>
+              <p class="card-text"><strong>Duración:</strong> {{item.duracion_anios}} años</p>
+            </div>
+          </div>
+        </div>
       }
-    </ul> 
-  </div>  
+    </div>
+
+  </div>
 </body>

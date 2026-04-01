@@ -14,11 +14,10 @@ export class SentenciasService {
   constructor(private http: HttpClient) {
     this.sentencias =  [],
     this.sentencia = {
-      cod_sentencia :0, 
+      cod_sentencia:0, 
       nombre :'', 
       descripcion: '', 
-      duracion_anios:'',
-      orden_de_gravedad:''
+      duracion_anios:''
     }
   }
 
@@ -33,7 +32,8 @@ export class SentenciasService {
     return this.http.get<Sentencia >(`${environment.API_URL}`+`sentencias/${id}`)
   }
   postSentencias(sActual:Sentencia){
-    return this.http.post<any| JSON>(`${environment.API_URL}`+"sentencias",sActual)
+    return this.http.post<any| JSON>(`${environment.API_URL}`+"sentencias/",sActual)
   }
-
 }
+
+

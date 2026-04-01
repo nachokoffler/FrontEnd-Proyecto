@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service.js';
+import { Usuario } from '../../interfaces/usuario-interface.js';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -27,5 +29,20 @@ export class UsuariosComponent implements OnInit{
         }})
   }
   bandera:boolean|undefined
-
+  eliminar(uActual:Usuario){
+    this.service.deleteAdministrador(uActual.cod_administrador).subscribe({
+      next:(data)=>{
+        if(data){
+          console.log("administrador borrado", data)
+        }},
+      error:(e)=>{
+        if(e.status == 404){
+          console.log("administradores no encontrados",e)
+        }
+        }})
+  }
+  
+  recargar() {
+    window.location.reload();
+  }
 }
