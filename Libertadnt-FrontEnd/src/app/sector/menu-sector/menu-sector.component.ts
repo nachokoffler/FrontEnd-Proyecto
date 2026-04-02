@@ -17,7 +17,7 @@ export class MenuSectorComponent implements OnInit{
       next:(data)=>{
         console.log("sectores obtenidos",data)
         this.service.sector.sectores=data.sectores
-        console.log("sectores obtenidos",this.service.sectores)
+        console.log("sectores obtenidos",this.service.sector.sectores)
       },
       error:(e)=>{console.log(e)}})
   }

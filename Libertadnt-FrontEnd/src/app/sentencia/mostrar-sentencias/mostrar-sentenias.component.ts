@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class MostrarSenteniasComponent implements OnInit {
   constructor (public service : SentenciasService){}
+  bandera: boolean | undefined
     ngOnInit(): void {
       this.service.getSentencias().subscribe({
         next: (data)=> {
@@ -25,6 +26,11 @@ export class MostrarSenteniasComponent implements OnInit {
           }
         }
       })
+
+      let usuario = sessionStorage.getItem("usuario");
+      console.log("usuario: ", usuario)
+
+
     }
   id = '';
   ban = false;
@@ -57,4 +63,19 @@ export class MostrarSenteniasComponent implements OnInit {
       error: (e) => {console.log(e)}}
     )
   }
+  recargar() {
+  window.location.reload();
+  }
+
+  eliminar(item: any) {
+  this.service.eliminarSentencia(item.cod_sentencia).subscribe({
+    next: (res) => {
+      console.log('Sentencia eliminada', res);
+    },
+    error: (err) => {
+      console.error('Error al eliminar', err);
+    }
+  });
+  }
+
 }

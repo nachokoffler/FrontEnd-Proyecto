@@ -14,9 +14,10 @@ export class MostrarCeldasComponent implements OnInit {
     let cod_sector = route.snapshot.params['sector'];
     console.log(route)
   }
-  
+  sector = ''
   ngOnInit(): void {
     console.log(this.route.snapshot.params['sector'])
+    this.sector=this.route.snapshot.params['sector']
     this.service.getCeldasDSeSector(this.route.snapshot.params['sector']).subscribe({
       next:(data)=>{
         this.service.celda.celdas=data.celdas;

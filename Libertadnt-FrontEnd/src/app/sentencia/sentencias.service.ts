@@ -34,6 +34,9 @@ export class SentenciasService {
   postSentencias(sActual:Sentencia){
     return this.http.post<any| JSON>(`${environment.API_URL}`+"sentencias/",sActual)
   }
+  eliminarSentencia(cod_sentencia:number){
+    return this.http.delete<any| JSON>(`${environment.API_URL}`+'sentencias/'+`${cod_sentencia}`)
+  }
 }
 
 

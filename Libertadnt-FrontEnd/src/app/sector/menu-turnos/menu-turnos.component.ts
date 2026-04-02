@@ -87,4 +87,8 @@ export class MenuTurnosComponent implements OnChanges {
       }
     });
   }
+
+  recargar() {
+  window.location.reload();
+}
 }

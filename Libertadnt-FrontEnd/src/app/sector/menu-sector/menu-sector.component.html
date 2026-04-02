@@ -1,36 +1,27 @@
-
 <body class="menu">
-    <div class="w-50 p-3 mx-auto d-flex flex-column align-items-center">
+  <div class="container-fluid px-4 py-3">
 
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Sectores</li>
-          </ol>
-        </nav>   
-        <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-            <p></p>
-            <h2 class="text-center">Sectores</h2>
-            <p></p>
-        </div>
-          
-        <div>
-            @for (sector of service.sector.sectores; track $index) {
-                <ul class="list-group list-group-horizontal-sm">
-                    <li class="list-group-item">
-                        Nombre: {{sector.nombre}}<br>
-                        Descripcion: {{sector.descripcion}}<br>
-                        Codigo de sector: {{sector.cod_sector}}<br>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                            <button [routerLink]="direccion" (click)="verCeldas(sector.cod_sector)" type="button" class="btn btn-outline-primary">Celdas</button>
-                            <button [routerLink]="direccion" (click)="verTurnos(sector.cod_sector)" type="button" class="btn btn-outline-primary">Turnos</button>
-                        </div> 
-                    </li>
-                </ul>
-                <p></p>
-                <p></p>
-            }
-        </div>
+    <div class="text-center mb-4">
+      <h2>Sectores</h2>
     </div>
-</body>
 
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      @for (sector of service.sector.sectores; track $index) {
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Numero de sector: {{sector.cod_sector}}</h5>
+              <hr>
+
+              <div class="d-flex justify-content-between mt-auto">
+                <button [routerLink]="direccion" (click)="verCeldas(sector.cod_sector)" type="button" class="btn btn-outline-primary btn-sm">Celdas</button>
+                <button [routerLink]="direccion" (click)="verTurnos(sector.cod_sector)" type="button" class="btn btn-outline-primary btn-sm">Turnos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</body>

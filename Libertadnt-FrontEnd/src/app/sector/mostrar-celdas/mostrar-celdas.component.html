@@ -1,36 +1,24 @@
 <body class="listado">
-    <div class="container d-flex justify-content-center">
-        <div class="w-25"> <!-- Cambiado de w-25 a w-50 para más espacio controlado -->
+  <div class="w-75 p-3">
 
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="usuario/menu">Menu Principal</a></li>
-                    <li class="breadcrumb-item"><a href="usuario/menu/sector">Sector</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Celdas</li>
-                </ol>
-            </nav>
-            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-            <p></p>
-            <h2 class="text-center">Celdas del sector</h2>
-            <p></p>
-            </div>
-
-            
-            @for (celda of service.celda.celdas; track $index) {
-                <div class="d-flex justify-content-center mb-3"> <!-- Contenedor para centrar cada item -->
-                    <div class="list-group w-75"> <!-- Ancho del 75% dentro del contenedor -->
-                        <div class="list-group-item p-2"> <!-- Reducido padding -->
-                            <p class="text-center mb-1"> <!-- Reducido margen inferior -->
-                                Codigo de celda: {{celda.cod_celda}}<br>
-                                Descripción: {{celda.descripcion}}<br>
-                                Capacidad: {{celda.capacidad}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            }
-
-        </div>
+    <div class="text-center">
+      <h2 class="mb-4">Celdas del sector {{sector}}</h2>
     </div>
-</body>
 
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      @for (celda of service.celda.celdas; track $index) {
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Celda {{celda.cod_celda}}</h5>
+              <hr>
+              <p class="card-text"><strong>Descripción:</strong> {{celda.descripcion}}</p>
+              <p class="card-text"><strong>Capacidad:</strong> {{celda.capacidad}}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</body>
