@@ -40,13 +40,14 @@ private http: HttpClient) {
      }
   this.turno ={
     cod_guardia: {
-      cod_guardia: 0,
-      nombre: '',
-      apellido: '',
-      dni: 0,
-      fecha_ini_contrato: null,
-      fecha_fin_contrato: null,
-      turnos: null
+        cod_guardia: 0,
+        nombre: '',
+        apellido: '',
+        dni: 0,
+        fecha_ini_contrato: null,
+        fecha_fin_contrato: null,
+        turnos: null,
+        guardias: []
     },
     cod_sector: {
       cod_sector: 0,

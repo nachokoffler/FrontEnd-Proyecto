@@ -70,8 +70,8 @@ export const routes: Routes = [
     //actividad
     {path: 'menu/actividad', component: MenuActividadComponent, canActivate: [AuthGuard] },
     {path: 'menu/actividad/alta-actividad', component: AltaActividadComponent, canActivate: [AuthGuard] },
-    {path: 'menu/actividad/modificar-actividad', component: ModificarActividadComponent, canActivate: [AuthGuard] },
     {path: 'menu/actividad/mostrar-actividad', component: MostrarActividadComponent, canActivate: [AuthGuard] },
+    //{path: 'menu/actividad/mostrar-actividad', component: MostrarActividadComponent, canActivate: [AuthGuard] },
     //taller
     {path: 'menu/taller', component: MenuTallerComponent, canActivate: [AuthGuard] },
     {path: 'menu/taller/alta-taller', component: AltaTallerComponent, canActivate: [AuthGuard] },

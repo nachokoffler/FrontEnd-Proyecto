@@ -8,3 +8,27 @@
   height: 100vh;
   color: white; /* Opcional, para que el texto sea visible */
 }
+/* Limitamos el ancho del carrusel y lo centramos */
+.carousel-container {
+    max-width: 600px; /* Ajusta este valor a tu gusto */
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Forzamos a que las imágenes tengan una altura fija para que no salten */
+.carousel-item img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Estilo extra para que las cards oscuras resalten */
+.card-dark-custom {
+    border: 1px solid #444;
+    transition: transform 0.2s;
+}
+
+.card-dark-custom:hover {
+    transform: scale(1.02);
+    border-color: #dc3545; /* Color rojo del título al pasar el mouse */
+}

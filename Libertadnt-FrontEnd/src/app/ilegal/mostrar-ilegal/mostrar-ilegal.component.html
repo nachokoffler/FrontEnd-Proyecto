@@ -1,45 +1,158 @@
-<body style="background-color: black; min-height: 100vh;">
-    <div class="container-fluid px-4 py-3">
+<div style="background-color: black; min-height: 100vh;">
+  <div class="container-fluid px-4 py-3">
 
-        <div class="text-center">
-            <h2 class="mb-4" style="color: #dc3545;">Actividades Ilegales Activas</h2>
+    <div class="carousel-container shadow-lg mb-5" style="max-width: 600px; margin: 0 auto; border-radius: 15px; overflow: hidden;">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/fubol.png" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Fútbol">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/pelea_hombres.png" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Peleas">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/gallos.png" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Gallos">
+          </div>
         </div>
-
-        @if (banana) {
-            <div class="row row-cols-1 row-cols-md-4 g-3">
-                @for (item of service.ilegal.ilegales; track $index) {
-                    <div class="col">
-                        <div class="card h-100 bg-dark text-white border-secondary">
-                            <div class="card-body p-2">
-                                <h6 class="card-title mb-1" style="color: #dc3545;">{{item.nombre}}</h6>
-                                <hr class="border-secondary my-1">
-                                <small>
-                                    <p class="card-text mb-1"><strong>Locacion:</strong> {{item.locacion}}</p>
-                                    <p class="card-text mb-1"><strong>Descripcion:</strong> {{item.descripcion}}</p>
-                                    <p class="card-text mb-1"><strong>Hora de Inicio:</strong> {{item.hora_inicio}}</p>
-                                    <p class="card-text mb-1"><strong>Hora de Fin:</strong> {{item.hora_fin}}</p>
-                                    <p class="card-text mb-1"><strong>Cupo máximo:</strong> {{item.cantidad_maxima}}</p>
-                                    <p class="card-text mb-1">
-                                        <strong>Día:</strong>
-                                        @if (item.dia_de_la_semana == 1) { Lunes }
-                                        @if (item.dia_de_la_semana == 2) { Martes }
-                                        @if (item.dia_de_la_semana == 3) { Miércoles }
-                                        @if (item.dia_de_la_semana == 4) { Jueves }
-                                        @if (item.dia_de_la_semana == 5) { Viernes }
-                                        @if (item.dia_de_la_semana == 6) { Sábado }
-                                        @if (item.dia_de_la_semana == 7) { Domingo }
-                                    </p>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        } @else {
-            <div class="alert alert-danger" role="alert">
-                <h4>NO hay actividades disponibles</h4>
-            </div>
-        }
-
+      </div>
     </div>
-</body>
+
+    <div class="text-center">
+      <h2 class="mb-4" style="color: #dc3545; font-weight: bold; text-transform: uppercase;">
+        Actividades Ilegales Activas
+      </h2>
+    </div>
+
+    @if (banana) {
+      <form [formGroup]="ilegalForm" class="row g-3 justify-content-center mb-5" (ngSubmit)="buscarPorNombre()">
+        <div class="col-md-4">
+          <div class="input-group">
+            <input type="text" class="form-control bg-dark text-white border-secondary" 
+                   formControlName="nombre" placeholder="Buscar actividad...">
+            <button type="submit" class="btn btn-danger">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      @if (bandera) {
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+          @for (item of service.ilegal.ilegales; track item.cod_act_ilegal) {
+            <div class="col">
+              <div class="card h-100 bg-dark text-white border-secondary shadow-sm">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title" style="color: #dc3545;">{{item.nombre}}</h5>
+                  <hr class="border-secondary">
+                  <p class="card-text small"><i class="bi bi-geo-alt text-danger"></i> {{item.locacion}}</p>
+                  <p class="card-text small text-secondary" style="height: 3rem; overflow: hidden;">{{item.descripcion}}</p>
+                  <p class="card-text small"><i class="bi bi-clock"></i> {{item.hora_inicio}} - {{item.hora_fin}}</p>
+                  
+                  <div class="mt-auto">
+                    <p class="badge bg-danger mb-3">
+                      @switch (item.dia_de_la_semana) {
+                        @case (1) { Lunes } @case (2) { Martes } @case (3) { Miércoles }
+                        @case (4) { Jueves } @case (5) { Viernes } @case (6) { Sábado }
+                        @case (7) { Domingo }
+                      }
+                    </p>
+                    <div class="d-flex justify-content-between">
+                      <button type="button" class="btn btn-sm btn-outline-light"
+                              data-bs-toggle="modal"
+                              [attr.data-bs-target]="'#modalReclusos-' + item.cod_act_ilegal"
+                              (click)="buscarRecluso(item.cod_act_ilegal)">
+                        <i class="bi bi-people"></i> Inscriptos
+                      </button>
+                      
+                      <button type="button" class="btn btn-sm btn-outline-danger"
+                              data-bs-toggle="modal"
+                              [attr.data-bs-target]="'#modal1-' + item.cod_act_ilegal">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" [id]="'modalReclusos-' + item.cod_act_ilegal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content bg-dark text-white border-secondary">
+                  <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Inscriptos en {{item.nombre}}</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    @if (reclusosActividad && reclusosActividad.length > 0) {
+                      <ul class="list-group list-group-flush">
+                        @for (recluso of reclusosActividad; track $index) {
+                          <li class="list-group-item bg-dark text-white border-secondary">
+                            <strong>{{recluso.nombre}} {{recluso.apellido}}</strong><br>
+                            <small class="text-secondary">DNI: {{recluso.dni}}</small>
+                          </li>
+                        }
+                      </ul>
+                    } @else {
+                      <p class="text-center text-secondary py-3">No hay reclusos registrados.</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" [id]="'modal1-' + item.cod_act_ilegal" aria-hidden="true" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border-secondary">
+                  <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-danger">¿Confirmar eliminación?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estás a punto de borrar: <strong>{{item.nombre}}</strong></p>
+                    <p class="small text-secondary">Esta acción no se puede deshacer.</p>
+                  </div>
+                  <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger"
+                            [attr.data-bs-target]="'#modal2-' + item.cod_act_ilegal"
+                            data-bs-toggle="modal"
+                            (click)="eliminar(item)">
+                      Eliminar definitivamente
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" [id]="'modal2-' + item.cod_act_ilegal" aria-hidden="true" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border-secondary">
+                  <div class="modal-header border-secondary text-center">
+                    <h5 class="modal-title w-100">Eliminado</h5>
+                  </div>
+                  <div class="modal-body text-center">
+                    <div class="alert alert-success bg-success-subtle border-success text-success-emphasis">
+                      <i class="bi bi-check-circle-fill"></i> Actividad borrada con éxito.
+                    </div>
+                  </div>
+                  <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal" (click)="recargar()">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="alert alert-danger bg-dark text-danger border-danger text-center" role="alert">
+          <h5>No hay actividades coincidentes</h5>
+        </div>
+      }
+    } @else {
+      <div class="text-center py-5 text-danger">
+        <div class="spinner-border" role="status"></div>
+        <p class="mt-2 text-white">Cargando base de datos...</p>
+      </div>
+    }
+  </div>
+</div>

@@ -13,14 +13,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const token = sessionStorage.getItem('token')
-
     if (!token) {
       this.router.navigate(['/login']);
       return false;
     }
 
     const isValid = await this.authService.verifyToken(token)
-    console.log(`is valid: ${isValid}`)
+    //console.log(`is valid: ${isValid}`)
     return isValid;
   }
 }

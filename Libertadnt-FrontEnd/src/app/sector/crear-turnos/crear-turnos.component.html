@@ -1,16 +1,33 @@
 <body style="background-color: #a2a6aa; min-height: 100vh;">
     <div class="d-flex justify-content-center align-items-start min-vh-100 pt-4">
-        <div class="w-25 p-3">
+        <div class="w-25 p-3 shadow-sm bg-light rounded">
 
             <h2 class="text-center mb-3">Crear turno</h2>
 
-            <form [formGroup]="nuevo_turno" (submit)="crearTurno()">
+            <form [formGroup]="nuevo_turno" (ngSubmit)="crearTurno()">
                 <fieldset>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Codigo de guardia</span>
-                        <input placeholder="Ingrese codigo" type="number" formControlName="cod_guardia" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Código de guardia</span>
+                        <input placeholder="Seleccione o ingrese código" type="number" formControlName="cod_guardia" class="form-control">
                     </div>
                 </fieldset>
+
+                <div class="dropdown-center mb-4">
+                    <button class="btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Seleccionar guardia de la lista
+                    </button>
+                    <ul class="dropdown-menu w-100">
+                        @for (guardia of serviceGuardia.guardia.guardias.data; track guardia.cod_guardia) {
+                            <li>
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="seleccionarGuardia(guardia.cod_guardia)">
+                                    {{ guardia.nombre }} (ID: {{ guardia.cod_guardia }})
+                                </a>
+                            </li>
+                        } @empty {
+                            <li><a class="dropdown-item disabled" href="#">No hay guardias activos</a></li>
+                        }
+                    </ul>
+                </div>
 
                 <h5 class="mb-2">Seleccione franja horaria</h5>
                 <fieldset class="mb-3">
@@ -28,22 +45,22 @@
                     </div>
                 </fieldset>
 
-                <button [disabled]="nuevo_turno.invalid" type="button" class="btn btn-success w-100" (click)="crearTurno()">Crear</button>
+                <button [disabled]="nuevo_turno.invalid" type="submit" class="btn btn-success w-100">Crear</button>
             </form>
 
             @if(bandera == 'exito'){
                 <div class="alert alert-success mt-3" role="alert">
-                    <h5 class="mb-0">El turno se creó con éxito</h5>
+                    <h5 class="mb-0 text-center">El turno se creó con éxito</h5>
                 </div>
             }
             @if(bandera == 'ocupado'){
                 <div class="alert alert-warning mt-3" role="alert">
-                    <h5 class="mb-0">El guardia no está disponible en la franja horaria elegida</h5>
+                    <h5 class="mb-0 text-center text-dark">El guardia no está disponible</h5>
                 </div>
             }
             @if(bandera == 'no encontrado'){
                 <div class="alert alert-danger mt-3" role="alert">
-                    <h5 class="mb-0">No se pudo encontrar ningún guardia activo con ese codigo</h5>
+                    <h5 class="mb-0 text-center">Guardia no encontrado</h5>
                 </div>
             }
 

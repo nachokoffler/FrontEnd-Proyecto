@@ -53,6 +53,9 @@ export class ReclusosService {
   getOneRecluso(id:number) {
     return this.http.get<Recluso | any>(`${environment.API_URL}`+"reclusos/"+`${id}`);
   }
+  getBusquedaParcial(nombre:string,apellido:String ){
+    return this.http.get<any | JSON>(`${environment.API_URL}`+"reclusos/"+`${nombre}`+"&"+`${apellido}`);
+  }
   getOneCondena(id:number) {
     return this.http.get<Condena | any>(this.api_condena+`${id}`);
   }
@@ -64,7 +67,6 @@ export class ReclusosService {
   }
   getOneCelda(id:number) {
     return this.http.get<any | JSON>(this.api_celda+`${id}`);
-
   }
   getCelda() {
     return this.http.get<any[] | JSON>(this.api_celda)

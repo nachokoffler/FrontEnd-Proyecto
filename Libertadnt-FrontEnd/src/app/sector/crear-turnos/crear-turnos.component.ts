@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SectorService } from '../sector.service.js';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { GuardiasService } from '../../guardias/guardias.service.js';
 
 @Component({
   selector: 'app-crear-turnos',
@@ -11,7 +12,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   styleUrl: './crear-turnos.component.css'
 })
 export class CrearTurnosComponent implements OnInit {
-  constructor (public service : SectorService,public route: ActivatedRoute){
+  constructor (public service : SectorService,public route: ActivatedRoute,public serviceGuardia : GuardiasService ){
     console.log(route)
     let codi_sector=this.route.snapshot.params['sector']
     this.cod_guardia= new FormControl('',[Validators.required,Validators.maxLength(30)]);
@@ -30,6 +31,18 @@ export class CrearTurnosComponent implements OnInit {
     console.log(this.route.snapshot.params['sector'])
     this.atras=this.route.snapshot.params['sector']
     this.link= "/usuario/menu/sector/t/"+`${this.atras}`
+    this.serviceGuardia.getGuardias().subscribe({
+        next:(data)=>{
+          console.log("guardias obtenidos :", data)
+          this.serviceGuardia.guardia.guardias = data
+          console.log("sevice  :", this.serviceGuardia.guardia.guardias.data)
+        },
+        error:(e)=>{
+          console.log("error:", e)
+          
+        }
+        })
+
   }
     nuevo_turno  : FormGroup;
     cod_guardia: FormControl;
@@ -60,5 +73,11 @@ export class CrearTurnosComponent implements OnInit {
           }
         }
         })}
+
+  seleccionarGuardia(codigo: number) {
+    this.nuevo_turno.patchValue({
+      cod_guardia: codigo
+    });
+  }
         
 }

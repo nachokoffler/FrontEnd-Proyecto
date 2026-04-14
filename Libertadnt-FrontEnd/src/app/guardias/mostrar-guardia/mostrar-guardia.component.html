@@ -10,15 +10,72 @@
       @for (item of service.guardias.data; track $index) {
         <div class="col">
           <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
               <hr>
               <p class="card-text"><strong>Codigo:</strong> {{item.cod_guardia}}</p>
               <p class="card-text"><strong>DNI:</strong> {{item.dni}}</p>
+
+              <div class="d-flex justify-content-end mt-auto">
+                <button type="button" class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#modal1-' + item.cod_guardia">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        
+
+        <!-- Modal 1 - Confirmación -->
+        <div class="modal fade"
+             [id]="'modal1-' + item.cod_guardia"
+             aria-hidden="true" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">¿Está seguro de la eliminación?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Nombre:</strong> {{item.nombre}} {{item.apellido}}</p>
+                <p><strong>Codigo:</strong> {{item.cod_guardia}}</p>
+                <p><strong>DNI:</strong> {{item.dni}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger"
+                        [attr.data-bs-target]="'#modal2-' + item.cod_guardia"
+                        data-bs-toggle="modal"
+                        (click)="eliminar(item)">
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 2 - Resultado -->
+        <div class="modal fade"
+             [id]="'modal2-' + item.cod_guardia"
+             aria-hidden="true" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Eliminación exitosa</h5>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-success" role="alert">
+                  El guardia <strong>{{item.nombre}} {{item.apellido}}</strong> fue eliminado correctamente.
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       }
     </div>
 

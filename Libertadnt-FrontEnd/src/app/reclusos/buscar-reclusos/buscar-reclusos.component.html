@@ -1,38 +1,57 @@
-
 <body class="formulario">
-  <div class="w-25 p-3">
-    <img src="../../../../assets/Screenshot 2026-03-20 185659.png"  class="img-fluid" alt="imagen">
-    <h2>Buscar Recluso</h2>
+  <div class="w-50 p-3">
+    <div class="d-flex flex-column align-items-center mb-3">
+      <img src="../../../../assets/variosReclusos.jpg" width="1000" height="350" class="mb-2" alt="logo">
+      <h2 class="mb-0">Buscar Reclusos</h2>
+    </div>
 
     <form [formGroup]="recluso" (submit)="validarRecluso()">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">DNI</span>
-        <input type="text" formControlName="dni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      <div class="row mb-3 align-items-center">
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Nombre</span>
+            <input type="text" formControlName="nombre" class="form-control" aria-label="Nombre">
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Apellido</span>
+            <input type="text" formControlName="apellido" class="form-control" aria-label="Apellido">
+          </div>
+        </div>
+        <div class="col-auto">
+          <button (click)="validarRecluso()" [disabled]="recluso.invalid" type="button" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
       </div>
-      <button  (click)="validarRecluso()" [disabled]="recluso.invalid" type="button" class="btn btn-primary">Buscar </button>
-      <p></p>
     </form>
-    
 
-    @if (bandera == true) {
+    <div class="mt-4">
+      @if (bandera == true) {
+        <h5 class="mb-3">Resultados encontrados: {{service.reclusos.data.length}}</h5>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          @for (item of service.reclusos.data; track $index) {
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
+                  <hr>
+                  <p class="card-text"><strong>DNI:</strong> {{item.dni}}</p>
+                  <p class="card-text"><strong>Fecha de nacimiento:</strong> {{getFecha(item.fecha_nac)}}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
 
-      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-        <h5>Nombre: {{service.recluso.data.nombre}}<br>
-           Apellido: {{service.recluso.data.apellido}}<br>
-            DNI: {{service.recluso.data.dni}}<br>
-            Fecha de nacimiento:  {{fecha.getDate()}} / {{fecha.getMonth() + 1}} / {{fecha.getFullYear()}} </h5>
-      </div>
-      
-    }
-    @if (bandera == false) {
-      
-      <div class="alert alert-danger" role="alert">
-        <h5>Recluso no encontrado</h5>
-      </div>
-
-    }
-   
+      @if (bandera == false) {
+        <div class="alert alert-danger" role="alert">
+          <h5>Recluso no encontrado</h5>
+        </div>
+      }
+    </div>
 
   </div>
 </body>
-

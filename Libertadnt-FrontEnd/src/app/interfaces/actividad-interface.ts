@@ -2,6 +2,8 @@ import { Recluso } from "./recluso-interface.js";
 import { Sector } from "./sector-interface.js";
 
 export interface Actividad {
+data: any;
+    cod_actividad: number;
     nombre: string,
     descripcion: string, 
     locacion: string, 
@@ -12,7 +14,8 @@ export interface Actividad {
     cantidad_minima: number,
     edad_minima: number, 
     cod_sector: number,
-    reclusos: Array<Recluso>,
+    reclusos: Recluso[],
+    actividades: Actividad[]
 
 }
 
