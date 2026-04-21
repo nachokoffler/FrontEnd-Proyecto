@@ -9,7 +9,6 @@ import { environment } from './../../environments/environment';
 })
 export class UsuarioService {
 
-  readonly api_url ='https://jsonplaceholder.typicode.com/todos/'
   messageService: any;
   usuario:any
   usuarios:any
@@ -29,7 +28,9 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${environment.API_URL}`+"administradores/"+`${id}`)
   }
   postAdministrador(uActual:Usuario){
-    return this.http.post<Usuario>(`${environment.API_URL}`+"administradores/logIn", uActual)
+    console.log("este es el link", `${environment.API_URL}`+"administradores/logIn", uActual)
+    return this.http.post<Usuario| any>(`${environment.API_URL}`+"administradores/logIn", uActual)
+    console.log("peticion realizada")
   }
   deleteAdministrador(cod_administrador:number){
     return this.http.delete<Usuario| JSON>(`${environment.API_URL}`+"administradores/"+`${cod_administrador}`)

@@ -40,18 +40,12 @@ export class LogInComponent   {
     })
   }
     
-
-    
-   
-      
-
-
   bandUsuario: string | undefined
   bandera = ''
   validarUsuarios(){
     this.enviarUsuario()
-  console.log(this.bandUsuario)
-  console.log(this.bandera)
+    console.log(this.bandUsuario)
+    console.log(this.bandera)
   }
   enviarUsuario(){
     this.service.postAdministrador(this.usuario.value).subscribe({
@@ -62,6 +56,7 @@ export class LogInComponent   {
           sessionStorage.setItem("token", response.token);
           sessionStorage.setItem("usuario", "menu");
           this.router.navigate(['usuario/menu'])
+          console.log("especial",response)
         }
         else {
           this.bandUsuario ='encontrado'
@@ -69,6 +64,7 @@ export class LogInComponent   {
           sessionStorage.setItem("token", response.token);
           sessionStorage.setItem("usuario", "maestro");
           this.router.navigate(['usuario/menu-maestro'])
+          console.log("no especial", response)
         }
       },
       error: (e)=> {
