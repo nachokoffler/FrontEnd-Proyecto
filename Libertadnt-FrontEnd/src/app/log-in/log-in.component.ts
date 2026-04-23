@@ -39,7 +39,7 @@ export class LogInComponent   {
       }
     })
   }
-    
+
   bandUsuario: string | undefined
   bandera = ''
   validarUsuarios(){
@@ -57,8 +57,7 @@ export class LogInComponent   {
           sessionStorage.setItem("usuario", "menu");
           this.router.navigate(['usuario/menu'])
           console.log("especial",response)
-        }
-        else {
+        } else {
           this.bandUsuario ='encontrado'
           this.bandera = "menu-maestro"
           sessionStorage.setItem("token", response.token);

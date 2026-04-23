@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.8",
     "build-angular:dev-server": "link:@angular-devkit/build-angular:dev-server",
     "cypress": "^14.2.0",
+    "http-server": "^14.1.1",
     "jest-preset-angular": "14.5.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

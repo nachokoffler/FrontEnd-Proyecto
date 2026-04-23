@@ -20,21 +20,19 @@ export class UsuarioService {
   private log(message: string) {
     this.messageService.add(`GuaridaService: ${message}`);
   }
+
   getUsuario() {
     return this.http.get<Usuario | JSON>(`${environment.API_URL}`+"administradores")
-    
   }
+
   getOneUsuario(id:any) {
     return this.http.get<Usuario>(`${environment.API_URL}`+"administradores/"+`${id}`)
   }
+
   postAdministrador(uActual:Usuario){
-    console.log("este es el link", `${environment.API_URL}`+"administradores/logIn", uActual)
     return this.http.post<Usuario| any>(`${environment.API_URL}`+"administradores/logIn", uActual)
-    console.log("peticion realizada")
   }
   deleteAdministrador(cod_administrador:number){
     return this.http.delete<Usuario| JSON>(`${environment.API_URL}`+"administradores/"+`${cod_administrador}`)
   }
 }
-
-

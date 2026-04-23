@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceEspecial {
-  private apiUrl = 'http://localhost:8080/verificar_token/especial';
+  private apiUrl = 'http://localhost:3000/verificar_token/especial';
 
   constructor(private http: HttpClient, private router: Router) {}
 
