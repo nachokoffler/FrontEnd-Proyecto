@@ -37,6 +37,10 @@ export class GuardiasService {
   getOneGuardias(id:number) {
     return this.http.get<Guardia | JSON>(`${environment.API_URL}`+"guardias/"+`${id}`);
   }
+
+  getBusquedaParcial(nombre:string,apellido:String ){
+    return this.http.get<any | JSON>(`${environment.API_URL}`+"guardias/"+`${nombre}`+"&"+`${apellido}`);
+  }
 }
 
 

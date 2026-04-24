@@ -6,6 +6,29 @@
       <h2 class="mb-4">Guardias Activos</h2>
     </div>
 
+      <form [formGroup]="guardia" (submit)="validarGuardia() ">
+      <div class="row mb-3 align-items-center">
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Nombre</span>
+            <input type="text" formControlName="nombre" class="form-control" aria-label="Nombre">
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Apellido</span>
+            <input type="text" formControlName="apellido" class="form-control" aria-label="Apellido">
+          </div>
+        </div>
+        <div class="col-auto">
+          <button (click)="validarGuardia() " [disabled]="guardia.invalid" type="button" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+
     <div class="row row-cols-1 row-cols-md-5 g-4">
       @for (item of service.guardias.data; track $index) {
         <div class="col">

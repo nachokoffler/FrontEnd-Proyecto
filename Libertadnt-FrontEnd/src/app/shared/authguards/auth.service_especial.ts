@@ -9,7 +9,7 @@ import { lastValueFrom } from 'rxjs';
 export class AuthServiceEspecial {
   private apiUrl = 'http://localhost:3000/verificar_token/especial';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router){}
 
   async verifyToken(token: string): Promise<boolean> {
     try {
@@ -25,3 +25,5 @@ export class AuthServiceEspecial {
     }
   }
 }
+
+

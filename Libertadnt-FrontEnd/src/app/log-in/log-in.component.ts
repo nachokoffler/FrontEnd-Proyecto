@@ -20,6 +20,7 @@ export class LogInComponent   {
   cod_administrador:FormControl;
   contrasenia: FormControl;
   bander = false;
+  cargando = false;
   toaster: any;
   eToken: string | null | undefined;
   constructor (private service : UsuarioService,private router:Router,private route: ActivatedRoute ){
@@ -44,32 +45,35 @@ export class LogInComponent   {
   bandera = ''
   validarUsuarios(){
     this.enviarUsuario()
-    console.log(this.bandUsuario)
-    console.log(this.bandera)
+    //console.log(this.bandUsuario)
+    //console.log(this.bandera)
   }
   enviarUsuario(){
+    this.cargando = true; 
     this.service.postAdministrador(this.usuario.value).subscribe({
       next: (response)=> {
+        this.cargando = false;
         if(!response.es_especial){
           this.bandUsuario='encontrado';
           this.bandera='menu'
           sessionStorage.setItem("token", response.token);
           sessionStorage.setItem("usuario", "menu");
           this.router.navigate(['usuario/menu'])
-          console.log("especial",response)
+          //console.log("especial",response)
         } else {
           this.bandUsuario ='encontrado'
           this.bandera = "menu-maestro"
           sessionStorage.setItem("token", response.token);
           sessionStorage.setItem("usuario", "maestro");
           this.router.navigate(['usuario/menu-maestro'])
-          console.log("no especial", response)
+          //console.log("no especial", response)
         }
       },
       error: (e)=> {
         console.log("usuario no valido ")
         console.log("estatus enviado: ",e.status)
         console.log("esto es el header ??")
+        this.cargando = false;
         
         if(e.status == 404){
           this.bandUsuario='no encontrado';
@@ -85,5 +89,6 @@ export class LogInComponent   {
         }
       }
     });
+
   }
 }
