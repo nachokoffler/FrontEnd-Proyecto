@@ -39,6 +39,7 @@ import { FinalizarTurnosComponent } from './sector/finalizar-turnos/finalizar-tu
 import { AuthGuard } from './shared/authguards/auth.guard.js';
 import { AuthGuardEspecial } from './shared/authguards/auth.guard_especial.js';
 import { CrearSectorComponent } from './sector/crear-sector/crear-sector.component.js';
+import { CrearAdministradorComponent } from './administradores/crear-administrador/crear-administrador.component.js';
 
 export const routes: Routes = [
     //log in
@@ -92,6 +93,8 @@ export const routes: Routes = [
     {path: 'usuario/menu-maestro/menu/modificar-actividad', component: ModificarIlegalComponent, canActivate: [AuthGuardEspecial] },
     {path: 'usuario/menu-maestro/menu/inscripcion-actividad', component: IncribirseIlegalComponent, canActivate: [AuthGuardEspecial] },
     {path: 'usuario/menu-maestro/menu/mostrar-actividad', component: MostrarIlegalComponent, canActivate: [AuthGuardEspecial]},
+    //Administradores
+    {path: 'usuario/menu-maestro/administradores/crear', component:CrearAdministradorComponent , canActivate: [AuthGuardEspecial]},
 ]
 
 

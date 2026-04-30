@@ -1,0 +1,64 @@
+<body class="formulario">
+
+  <!-- Formulario centrado y chico -->
+  <div class="d-flex flex-column align-items-center mt-1">
+    <div class="w-100 p-3">
+
+      <div class="d-flex flex-column align-items-center mb-3">
+
+        <h2 class="mb-0">Ingrese Nuevo Administrador</h2>
+      </div>
+
+      <form [formGroup]="administrador" (submit)="crearAdministrador()" >
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+          <input type="text" formControlName="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
+          <input type="text" formControlName="apellido" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">DNI</span>
+          <input type="number" formControlName="dni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+          <input type="email" formControlName="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" formControlName="es_especial" type="checkbox" role="switch" id="switchCheckDefault" value="true">
+            <label class="form-check-label" for="switchCheckDefault">Administrador especial</label>
+        </div>
+
+        <p></p>
+        <button [disabled]="administrador.invalid" 
+                type="button" 
+                class="btn btn-primary w-100"
+                (click)="crearAdministrador()"
+                >Registrar</button>
+        </form>
+
+      @if (bandera == 'Administrador creado exitosamente') {
+        <div class="alert alert-success" role="alert">
+            <h5>Administrador creado exitosamente</h5>
+        </div>
+      }
+
+      @if (bandera == 'Error al crear el administrador') {
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+          <h5> Error al crear el administrador </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      }
+
+
+    </div>
+  </div>
+
+</body>

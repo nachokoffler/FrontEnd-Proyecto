@@ -84,17 +84,7 @@
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <button class="btn btn-dark dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      [ngClass]="{'btn-primary': rutaActual.includes('ver-usuarios')}">
-                <i class="bi bi-gear-fill"></i> Administradores
-              </button>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="usuario/:menu/ver-usuarios">Mostrar todos los adminsitradores</a></li>
-              </ul>
-            </li>
+
 
             <li class="nav-item dropdown">
               <button class="btn btn-dark dropdown-toggle"
@@ -124,6 +114,20 @@
                   <li><a class="dropdown-item" href="usuario/menu-maestro/menu/mostrar-actividad">Mostrar actividades ilegales</a></li>
                 </ul>
               </li>
+
+            <li class="nav-item dropdown">
+              <button class="btn btn-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      [ngClass]="{'btn-primary': rutaActual.includes('ver-usuarios')}">
+                <i class="bi bi-gear-fill"></i> Administradores
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="usuario/menu-maestro/administradores/crear">Crear Administradores</a></li>
+                <li><a class="dropdown-item" href="usuario/:menu/ver-usuarios">Mostrar todos los Usuarios</a></li>
+              </ul>
+            </li>
+
             }
           </ul>
         </div>
