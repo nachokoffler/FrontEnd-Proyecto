@@ -40,37 +40,80 @@
 
                     <!-- Modal -->
                     <ng-template #content let-modal>
-                        <div class="modal-header bg-dark text-light">
-                            <h4 class="modal-title" style="color: #dc3545;">Inscripcion de recluso a {{item.nombre}}</h4>
-                            <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss('Cross click')" (click)="cambiarBandera()"></button>
-                        </div>
-                        <form [formGroup]="recluso" (submit)="validarRecluso(item)">
-                            <div class="modal-body bg-dark text-light">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control bg-dark text-white border-secondary" formControlName="cod_recluso" id="cod_recluso" placeholder="Ingrese codigo recluso">
-                                    <label for="cod_recluso" class="text-secondary">Codigo Recluso</label>
+                        <div class="modal-dialog modal-dialog-scrollable border-0">
+                            <div class="modal-content bg-dark text-light border-0">
+                                <div class="modal-header border-secondary">
+                                    <h4 class="modal-title" style="color: #dc3545;">Inscripcion de recluso a {{item.nombre}}</h4>
+                                    <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss('Cross click')" (click)="cambiarBandera()"></button>
                                 </div>
-                            </div>
-                            <div class="modal-footer bg-dark text-light">
-                                <button [disabled]="recluso.invalid" (click)="validarRecluso(item)" type="button" class="btn btn-success">Confirmar</button>
-                            </div>
-                        </form>
 
-                        @if(banderaRecluso == 'no inscripto'){
-                            <div class="alert alert-danger m-3" role="alert">
-                                <h4>{{error}}</h4>
+                                <div class="modal-body">
+
+                                    <!-- Formulario de búsqueda -->
+                                    <form [formGroup]="recluso">
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Nombre</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                                   formControlName="nombre" placeholder="Ingrese nombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Apellido</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                                   formControlName="apellido" placeholder="Ingrese apellido">
+                                        </div>
+                                        <button type="button" class="btn btn-info w-100 mb-3"
+                                                [disabled]="recluso.invalid" (click)="buscarReclusos()">
+                                            Buscar
+                                        </button>
+                                    </form>
+
+                                    <!-- Resultados de búsqueda -->
+                                    @if (bandPacrcial == true) {
+                                        <div style="max-height: 300px; overflow-y: auto;">
+                                            <label class="form-label mb-2 text-white"><strong>Seleccione un recluso:</strong></label>
+                                            @for (rec of reclusosFiltrados; track rec.cod_recluso) {
+                                                <div class="form-check mb-2 p-2 rounded"
+                                                     style="background-color: #2c2c2c; border: 1px solid #444;">
+                                                    <input class="form-check-input" type="radio"
+                                                           [value]="rec"
+                                                           [checked]="reclusoSeleccionado?.cod_recluso === rec.cod_recluso"
+                                                           (change)="seleccionarRecluso(rec)"
+                                                           [id]="'recluso_' + rec.cod_recluso">
+                                                    <label class="form-check-label text-white" [for]="'recluso_' + rec.cod_recluso">
+                                                        <strong>{{rec.nombre}} {{rec.apellido}}</strong>
+                                                        <br>
+                                                        <small class="text-secondary">DNI: {{rec.dni}}</small>
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    } @else if (bandPacrcial == false) {
+                                        <div class="alert alert-warning" role="alert">
+                                            No se encontraron reclusos con esos criterios.
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="modal-footer border-secondary">
+                                    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel')">Cancelar</button>
+                                    <button type="button" class="btn btn-success"
+                                            [disabled]="!reclusoSeleccionado" (click)="confirmarSeleccionRecluso(item)">
+                                        Confirmar
+                                    </button>
+                                </div>
+
+                                @if (banderaRecluso == 'no inscripto' || banderaRecluso == 'message') {
+                                    <div class="alert alert-danger m-3" role="alert">
+                                        <h6>{{error}}</h6>
+                                    </div>
+                                }
+                                @if (banderaRecluso == 'inscripto') {
+                                    <div class="alert alert-success m-3" role="alert">
+                                        <h6>{{error}}</h6>
+                                    </div>
+                                }
                             </div>
-                        }
-                        @if(banderaRecluso == 'message'){
-                            <div class="alert alert-danger m-3" role="alert">
-                                <h4>{{error}}</h4>
-                            </div>
-                        }
-                        @if(banderaRecluso == 'inscripto'){
-                            <div class="alert alert-success m-3" role="alert">
-                                <h4>{{error}}</h4>
-                            </div>
-                        }
+                        </div>
                     </ng-template>
 
                 }

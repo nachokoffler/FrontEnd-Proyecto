@@ -5,20 +5,20 @@
         <p></p>
         @if (bandera=== true) {
             <h3>Reclusos a liberar con condena finalizada</h3>
-            <p></p>
-            @for (item of sRecluso.reclusos.data; track $index) {
-                <ul class="list-group">
-                    <li class="list-group-item disabled" aria-disabled="true">
-                        <h5>Nombre: {{item.nombre}}
-                            <br>Apellido: {{item.apellido}} 
-                            <br>DNI: {{item.dni}} 
-                            <br>FECHA DE NACIMIENTO: {{item.fecha_nac.getDate()}} / {{item.fecha_nac.getMonth() + 1}} / {{item.fecha_nac.getFullYear()}}
-                        </h5>
-                    <p></p>
-                    </li>
-                  </ul>
-                <p></p>
-            }
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+                @for (item of sRecluso.reclusos.data; track $index) {
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
+                                <p class="card-text mb-1"><strong>DNI:</strong> {{item.dni}}</p>
+                                <p class="card-text mb-1"><strong>Fecha de nacimiento:</strong> {{item.fecha_nac.getDate()}} / {{item.fecha_nac.getMonth() + 1}} / {{item.fecha_nac.getFullYear()}}</p>
+                                <p class="card-text mb-0"><strong>Condena finalizada</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         }
         @if (bandera === false) {
             <div class="alert alert-warning" role="alert">

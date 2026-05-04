@@ -36,13 +36,23 @@ export class AppComponent implements OnChanges, OnInit {
 
     // Capturar ruta actual al iniciar
     this.rutaActual = this.router.url;
+    this.updateBananaFromUrl(this.rutaActual);
 
     // Escuchar cambios de ruta
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event) => {
       this.rutaActual = (event as NavigationEnd).urlAfterRedirects;
+      this.updateBananaFromUrl(this.rutaActual);
     });
+  }
+
+  private updateBananaFromUrl(url: string) {
+    const path = url.split('?')[0];
+    const segments = path.split('/').filter(Boolean);
+    const isLoginRoute = segments.length === 1;
+    const isEstablecerContraseniaRoute = path === '/usuario/menu-maestro/administradores/email';
+    this.banana = isLoginRoute || isEstablecerContraseniaRoute;
   }
 
   onActivate(componente: any) {
@@ -51,7 +61,11 @@ export class AppComponent implements OnChanges, OnInit {
     if (usuario == 'menu') { this.bandera = false; }
     console.log('Componente activo:', componente);
     console.log('Nombre:', componente.constructor.name);
-    if (componente.constructor.name == "_LogInComponent") {
+    if (
+      componente.constructor.name === '_LogInComponent' ||
+      componente.constructor.name === 'LogInComponent' ||
+      componente.constructor.name === 'EstablecerContraseniaComponent'
+    ) {
       this.banana = true;
     } else {
       this.banana = false;

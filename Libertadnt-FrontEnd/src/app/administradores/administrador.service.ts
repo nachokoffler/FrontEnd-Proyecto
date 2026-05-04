@@ -9,8 +9,8 @@ import { Administrador } from '../interfaces/administrdor-interface.js';
   providedIn: 'root'
 })
 export class AdministradorService {
-  constructor(private http: HttpClient) { 
-
+  constructor(private http: HttpClient) {
+    
   }
   getAdministrador() {
     return this.http.get<Administrador | JSON>(`${environment.API_URL}`+"administradores")
@@ -23,6 +23,12 @@ export class AdministradorService {
   postAdministrador(administrador: object) {
     return this.http.post<Administrador | JSON>(`${environment.API_URL}`+"administradores",administrador);
   }
+
+  completarRegistro(administrador: object){
+    console.log(administrador);
+    return this.http.post<Administrador | JSON>(`${environment.API_URL}`+"administradores/completar-registro",administrador);
+  } // { token, contrasenia }
+
 }
 
 

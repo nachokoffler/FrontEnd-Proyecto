@@ -4,9 +4,6 @@ import { ReclusosService } from '../../reclusos/reclusos.service.js';
 import { ActividadService } from '../../actividades/actividad.service.js';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-
-
-
 @Component({
   selector: 'app-incribirse-ilegal',
   standalone: true,
@@ -14,11 +11,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './incribirse-ilegal.component.html',
   styleUrl: './incribirse-ilegal.component.css'
 })
+
 export class IncribirseIlegalComponent implements OnInit{
   constructor (public service : ActividadService,public sRecluso : ReclusosService, private modalService: NgbModal){
-    this.cod_recluso= new FormControl('',[Validators.required]);
+    this.cod_recluso= new FormControl('',);
+    this.nombre= new FormControl('',);
+    this.apellido= new FormControl('',);
   this.recluso = new FormGroup({
-        cod_recluso:this.cod_recluso
+        cod_recluso:this.cod_recluso,
+        nombre:this.nombre,
+        apellido:this.apellido
+      })
+    this.busquedaRecluso = new FormGroup({
+        nombre: new FormControl('', [Validators.required]),
+        apellido: new FormControl('', [Validators.required])
       })    
       
   }
@@ -41,11 +47,18 @@ export class IncribirseIlegalComponent implements OnInit{
       }})
   }
   error:string=''
+  nombre: FormControl ;
+  apellido: FormControl ;
   recluso  : FormGroup;
+  busquedaRecluso: FormGroup;
   banana=false
+  bandPacrcial:boolean|undefined
   cod_recluso: FormControl;
   banderaRecluso:string|undefined
   inscriptos = []
+  reclusosFiltrados: any[] = []
+  reclusoSeleccionado: any = null
+  
   ingresarIsncripcion(x:any){
     if(x.inscripcion!== true ){x.inscripcion = true}
     else if(x.inscripcion == true){x.inscripcion=false}
@@ -55,10 +68,36 @@ export class IncribirseIlegalComponent implements OnInit{
   cambiarBandera(){
     this.banderaRecluso= undefined
   }
-  validarRecluso(x:any){
-    console.log("codigo de actividad" ,x)
-    console.log("codigo de recluso" ,this.cod_recluso.value)
-    this.service.InscribirActividadIlegal(x.cod_act_ilegal,this.cod_recluso.value).subscribe({
+  
+  buscarReclusos(){
+    console.log("Buscando reclusos con nombre:", this.nombre.value, "y apellido:", this.apellido.value);
+    this.sRecluso.getBusquedaParcial(this.nombre.value, this.apellido.value).subscribe({
+      next:(data)=>{
+        console.log("Reclusos encontrados:", data);
+        this.reclusosFiltrados = data.data ;
+        this.bandPacrcial=true
+        this.recluso.reset()
+      },
+      error:(e)=>{
+        console.log("Error en búsqueda:", e);
+        this.reclusosFiltrados = [];
+        this.bandPacrcial=false
+      }
+    });
+  }
+
+  seleccionarRecluso(recluso: any){
+    this.reclusoSeleccionado = recluso;
+    console.log("Recluso seleccionado:", recluso);
+  }
+
+  confirmarSeleccionRecluso(item: any){
+    if(!this.reclusoSeleccionado){
+      this.error = "Debe seleccionar un recluso";
+      return;
+    }
+    
+    this.service.InscribirActividadIlegal(item.cod_act_ilegal, this.reclusoSeleccionado.cod_recluso).subscribe({
       next:(data)=>{
         console.log("data",data.status);
         if(data.status == 201){
@@ -95,9 +134,11 @@ export class IncribirseIlegalComponent implements OnInit{
           this.error=e.error.message
         }
         }})
-      this.recluso.reset();
-      }
-      
+      this.busquedaRecluso.reset();
+      this.reclusoSeleccionado = null;
+      this.reclusosFiltrados = [];
+  }
+  
     }
     
 

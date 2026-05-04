@@ -53,7 +53,13 @@ export class ReclusosService {
   getOneRecluso(id:number) {
     return this.http.get<Recluso | any>(`${environment.API_URL}`+"reclusos/"+`${id}`);
   }
-  getBusquedaParcial(nombre:string,apellido:String ){
+  getBusquedaParcial(nombre:string|null,apellido:String|null) {
+    if(nombre=='' ){
+      nombre=null
+    }
+    if(apellido =='' ){
+      apellido=null
+    }
     return this.http.get<any | JSON>(`${environment.API_URL}`+"reclusos/"+`${nombre}`+"&"+`${apellido}`);
   }
   getOneCondena(id:number) {

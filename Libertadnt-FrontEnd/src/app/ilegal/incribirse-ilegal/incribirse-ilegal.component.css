@@ -7,3 +7,19 @@
   color: #fff;            /* texto blanco */
   min-height: 100vh;      /* ocupa toda la pantalla */
 }
+.modal-content {
+  border: none !important;
+}
+
+.modal-dialog {
+  border: none !important;
+}
+
+::ng-deep .modal-content {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .modal-dialog {
+  border: none !important;
+}

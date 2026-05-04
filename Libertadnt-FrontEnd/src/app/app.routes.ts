@@ -40,8 +40,11 @@ import { AuthGuard } from './shared/authguards/auth.guard.js';
 import { AuthGuardEspecial } from './shared/authguards/auth.guard_especial.js';
 import { CrearSectorComponent } from './sector/crear-sector/crear-sector.component.js';
 import { CrearAdministradorComponent } from './administradores/crear-administrador/crear-administrador.component.js';
+import { EstablecerContraseniaComponent } from './administradores/establecer-contrasenia/establecer-contrasenia.component.js';
 
 export const routes: Routes = [
+    //completar registro con token en query param
+    {path: 'completar-registro', component: EstablecerContraseniaComponent, canActivate: [AuthGuardEspecial]},
     //log in
     {path: ':usuario', component: LogInComponent},
     //menu
