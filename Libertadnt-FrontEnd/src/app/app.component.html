@@ -112,6 +112,7 @@
                   <li><a class="dropdown-item" href="usuario/menu-maestro/menu/mostrar-actividad">Mostrar actividades ilegales</a></li>
                 </ul>
               </li>
+            }
 
             <li class="nav-item dropdown">
               <button class="btn btn-dark dropdown-toggle"
@@ -121,12 +122,14 @@
                 <i class="bi bi-gear-fill"></i> Administradores
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
+                @if(bandera == true){
                 <li><a class="dropdown-item" href="usuario/menu-maestro/administradores/crear">Crear Administradores</a></li>
+                }
                 <li><a class="dropdown-item" href="usuario/:menu/ver-usuarios">Mostrar todos los administradores</a></li>
               </ul>
             </li>
 
-            }
+            
           </ul>
         </div>
       </div>

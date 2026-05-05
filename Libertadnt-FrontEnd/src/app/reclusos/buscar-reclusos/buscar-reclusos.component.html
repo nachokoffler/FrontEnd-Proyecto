@@ -34,15 +34,61 @@
           @for (item of service.reclusos.data; track $index) {
             <div class="col">
               <div class="card h-100">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                   <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
                   <hr>
                   <p class="card-text"><strong>DNI:</strong> {{item.dni}}</p>
-                  <p class="card-text"><strong>Codigo de celda:</strong> {{item.Celda}}</p>
+                  <p class="card-text"><strong>Codigo de celda:</strong> {{item.celda.cod_celda}}</p>
                   <p class="card-text"><strong>Fecha de nacimiento:</strong> {{getFecha(item.fecha_nac)}}</p>
+
+                  <div class="d-flex justify-content-end mt-auto">
+                    <button type="button" class="btn btn-primary btn-sm"
+                            data-bs-toggle="modal"
+                            [attr.data-bs-target]="'#modalSentencias-' + item.cod_recluso">
+                      <i class="bi bi-file-text"></i> Sentencias
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Modal Sentencias -->
+            <div class="modal fade"
+                 [id]="'modalSentencias-' + item.cod_recluso"
+                 aria-hidden="true" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Sentencias de {{item.nombre}} {{item.apellido}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    @if (item.condenas && item.condenas.filter(sentencia => sentencia.fecha_fin_real == null).length > 0) {
+                      <ul class="list-group list-group-flush">
+                        @for (sentencia of item.condenas; track $index) {
+                          @if (sentencia.fecha_fin_real == null) {
+                            <li class="list-group-item">
+                              <p class="mb-1"><strong>Nombre:</strong> {{sentencia.nombre}}</p>
+                              <p class="mb-1"><strong>Descripcion:</strong> {{sentencia.descripcion}}</p>
+                              <p class="mb-1"><strong>Duración:</strong> {{sentencia.duracion_anios}} años</p>
+                              <p class="mb-0"><strong>Gravedad:</strong> {{sentencia.orden_de_gravedad}}</p>
+                            </li>
+                          }
+                        }
+                      </ul>
+                    } @else {
+                      <div class="alert alert-info" role="alert">
+                        Este recluso no tiene sentencias activas.
+                      </div>
+                    }
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           }
         </div>
       }

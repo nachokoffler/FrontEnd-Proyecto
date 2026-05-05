@@ -13,13 +13,16 @@
                 <hr>
                 <p class="card-text"><strong>Codigo:</strong> {{item.cod_administrador}}</p>
                 <p class="card-text"><strong>Email:</strong> {{item.email}}</p>
+                <p class="card-text"><strong>DNI:</strong> {{item.dni}}</p>
 
                 <div class="d-flex justify-content-end mt-auto">
-                  <button type="button" class="btn btn-danger" 
-                          data-bs-toggle="modal" 
-                          [attr.data-bs-target]="'#modal1-' + item.cod_administrador">
-                    <i class="bi bi-trash"></i>
-                  </button>
+                  @if (isSpecialUser) {
+                    <button type="button" class="btn btn-danger" 
+                            data-bs-toggle="modal" 
+                            [attr.data-bs-target]="'#modal1-' + item.cod_administrador">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  }
                 </div>
               </div>
             </div>

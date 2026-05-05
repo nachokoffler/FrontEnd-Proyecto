@@ -44,7 +44,7 @@ import { EstablecerContraseniaComponent } from './administradores/establecer-con
 
 export const routes: Routes = [
     //completar registro con token en query param
-    {path: 'completar-registro', component: EstablecerContraseniaComponent, canActivate: [AuthGuardEspecial]},
+    {path: 'completar-registro', component: EstablecerContraseniaComponent,},
     //log in
     {path: ':usuario', component: LogInComponent},
     //menu

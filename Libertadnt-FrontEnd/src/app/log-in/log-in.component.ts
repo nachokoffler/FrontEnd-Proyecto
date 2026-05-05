@@ -17,7 +17,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class LogInComponent   { 
   @Output() eslogin = new EventEmitter<string>();
   usuario: FormGroup;
-  cod_administrador:FormControl;
+  inputUsuario:FormControl;
   contrasenia: FormControl;
   bander = false;
   cargando = false;
@@ -25,10 +25,9 @@ export class LogInComponent   {
   eToken: string | null | undefined;
   constructor (private service : UsuarioService,private router:Router,private route: ActivatedRoute ){
     this.contrasenia= new FormControl('',[Validators.required])
-    this.cod_administrador= new FormControl('',[Validators.required])
-    console.log(this.cod_administrador)
+    this.inputUsuario= new FormControl('',[Validators.required])
     this.usuario = new FormGroup({
-      cod_administrador: this.cod_administrador,
+      inputUsuario: this.inputUsuario,
       contrasenia: this.contrasenia,
     })
     this.route.paramMap.subscribe(params => {
@@ -45,11 +44,10 @@ export class LogInComponent   {
   bandera = ''
   validarUsuarios(){
     this.enviarUsuario()
-    //console.log(this.bandUsuario)
-    //console.log(this.bandera)
   }
   enviarUsuario(){
     this.cargando = true; 
+    console.log("enviando usuario", this.usuario.value)
     this.service.postAdministrador(this.usuario.value).subscribe({
       next: (response)=> {
         this.cargando = false;

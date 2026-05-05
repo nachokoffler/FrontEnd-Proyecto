@@ -12,7 +12,9 @@ import { Usuario } from '../../interfaces/usuario-interface.js';
 })
 export class UsuariosComponent implements OnInit{
   constructor(public service: UsuarioService){}
+  isSpecialUser: boolean = false;
   ngOnInit(): void {
+    this.isSpecialUser = sessionStorage.getItem("usuario") === "maestro";
     this.service.getUsuario().subscribe({
       next:(data)=>{
         if(data){
