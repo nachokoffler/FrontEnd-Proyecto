@@ -9,9 +9,9 @@ Crea un carpeta en tu computadora, ejecuta git init y luego git remote add origi
 Luego ejecuta pnpm install.
 
 Tambien vas a tener que crear un archivo .env en el directorio principal. \
-server_port=4200
-JWT_SECRET="4265#%mkj68u7"
-JWT_SECRET_SPECIAL='asdasdeeer555678?()55'
+server_port=4200 \
+JWT_SECRET="4265#%mkj68u7" \
+JWT_SECRET_SPECIAL='asdasdeeer555678?()55' \
 
 Para comenzar a usar el servidor frontend, ejecute 'ng serve' en la terminal.
 
