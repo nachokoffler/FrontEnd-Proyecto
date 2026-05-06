@@ -1,13 +1,8 @@
 <body class="formulario">
   <div class="w-25 p-3">
 
-    <a class="icon-link icon-link-hover" href="menu/actividad">
-      ATRAS
-      <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
-    </a>
-    <p></p>
 
-    <h2 class="text-center mb-4 text-decoration-underline"s>Ingrese datos de la actividad</h2>
+    <h2 class="text-center mb-4 "s>Ingrese datos de la actividad</h2>
 
     <form [formGroup]="actividad" (submit)="validarActividad()">
 
@@ -184,7 +179,7 @@
        <p></p>
 
         <p></p>
-        <button [disabled]="actividad.invalid"  (click)="validarActividad()"  type="button" class="btn btn-primary" >Crear</button>
+        <button [disabled]="actividad.invalid"  (click)="validarActividad()"  type="button" class="btn btn-primary w-100" >Crear</button>
     <p></p>
 
     @if (bandActividad == 'exito') {

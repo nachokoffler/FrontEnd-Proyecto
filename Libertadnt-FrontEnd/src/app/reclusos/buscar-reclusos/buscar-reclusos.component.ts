@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReclusosService } from '../reclusos.service.js';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 
@@ -16,7 +17,7 @@ function alMenosUnCampo(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-buscar-reclusos',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './buscar-reclusos.component.html',
   styleUrl: './buscar-reclusos.component.css'
 })
@@ -54,10 +55,10 @@ export class BuscarReclusosComponent {
     this.service.getBusquedaParcial(this.nombre.value, this.apellido.value).subscribe({
       next: (data) => {
         if (data.status == 201) {
-          this.service.reclusos = data;
+          this.service.reclusos = { data: data.data || [] };
           console.log("reclusos encontrados", this.service.reclusos);
           this.bandera = true;
-           this.cdr.detectChanges(); // 👈 fuerza la actualización de la vista
+          this.cdr.detectChanges(); // 👈 fuerza la actualización de la vista
         }
       },
       error: (e) => {
@@ -93,13 +94,15 @@ abrirModalSentencias(item: any) {
   console.log('sentencias:', this.sentenciasModal);
 
   // destruye instancia vieja y crea una nueva
-  const modalEl = document.getElementById('modalSentenciasGlobal');
-  let modalInstance = (window as any).bootstrap.Modal.getInstance(modalEl);
-  if (modalInstance) {
-    modalInstance.dispose(); // 👈 destruye instancia anterior
-  }
-  modalInstance = new (window as any).bootstrap.Modal(modalEl);
-  modalInstance.show();
+  setTimeout(() => {
+    const modalEl = document.getElementById('modalSentenciasGlobal');
+    let modalInstance = (window as any).bootstrap.Modal.getInstance(modalEl);
+    if (modalInstance) {
+      modalInstance.dispose(); // 👈 destruye instancia anterior
+    }
+    modalInstance = new (window as any).bootstrap.Modal(modalEl);
+    modalInstance.show();
+  }, 0);
 }
 
 getCondenasActivas(condenas: any[]): any[] {
