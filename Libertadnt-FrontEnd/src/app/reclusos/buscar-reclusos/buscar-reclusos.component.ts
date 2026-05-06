@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ReclusosService } from '../reclusos.service.js';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 
@@ -29,7 +29,7 @@ export class BuscarReclusosComponent {
   dni: FormControl;
   bandera: boolean | undefined;
 
-  constructor(public service: ReclusosService) {
+  constructor(public service: ReclusosService, private cdr: ChangeDetectorRef) {
     this.cod_recluso = new FormControl('');
     this.nombre = new FormControl('');
     this.apellido = new FormControl('');
@@ -48,15 +48,16 @@ export class BuscarReclusosComponent {
     return `${fecha.getDate()} / ${fecha.getMonth() + 1} / ${fecha.getFullYear()}`;
   }
 
+
   validarRecluso() {
     
     this.service.getBusquedaParcial(this.nombre.value, this.apellido.value).subscribe({
       next: (data) => {
         if (data.status == 201) {
-          
-          console.log("reclusos encontrados", data);
           this.service.reclusos = data;
+          console.log("reclusos encontrados", this.service.reclusos);
           this.bandera = true;
+           this.cdr.detectChanges(); // 👈 fuerza la actualización de la vista
         }
       },
       error: (e) => {
@@ -69,6 +70,44 @@ export class BuscarReclusosComponent {
 
     this.recluso.reset();
   }
+sentenciasModal: any[] = [];
+reclusoSeleccionadoModal: any = null;
+
+abrirModalSentencias(item: any) {
+  this.reclusoSeleccionadoModal = item;
+  this.sentenciasModal = []; // limpia antes de cargar
+
+  if (item.condenas && item.condenas.length > 0) {
+    item.condenas.forEach((condena: any) => {
+      if (condena.fecha_fin_real === null) {
+        if (condena.sentencias && condena.sentencias.length > 0) {
+          condena.sentencias.forEach((sentencia: any) => {
+            this.sentenciasModal.push(sentencia);
+          });
+        }
+      }
+    });
+  }
+
+  console.log('total sentencias:', this.sentenciasModal.length);
+  console.log('sentencias:', this.sentenciasModal);
+
+  // destruye instancia vieja y crea una nueva
+  const modalEl = document.getElementById('modalSentenciasGlobal');
+  let modalInstance = (window as any).bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) {
+    modalInstance.dispose(); // 👈 destruye instancia anterior
+  }
+  modalInstance = new (window as any).bootstrap.Modal(modalEl);
+  modalInstance.show();
+}
+
+getCondenasActivas(condenas: any[]): any[] {
+  return condenas
+    .filter((condena: any) => condena.fecha_fin_real === null)
+    .flatMap((condena: any) => condena.sentencias);
+}
+
 }
 
 function elif(arg0: boolean) {
